@@ -3,41 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Welcome to Jensen Tire & Auto Onboarding</title>
+  <title>Jensen Tire & Auto | Employee Onboarding</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; max-width: 800px; }
-    h1 { color: #0b5394; }
-    a.button {
-      display: block; 
-      margin: 10px 0; 
-      padding: 15px; 
-      background: #0b5394; 
-      color: white; 
-      text-decoration: none; 
-      border-radius: 8px; 
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f7f7f7;
+      color: #333;
+    }
+    header {
+      background: #000;
+      padding: 20px;
       text-align: center;
     }
-    .instructions { margin-bottom: 30px; font-size: 16px; }
+    header img {
+      max-width: 300px;
+      width: 90%;
+      height: auto;
+    }
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #e65100;
+    }
+    a.button {
+      display: block;
+      background: #e65100;
+      color: white;
+      text-decoration: none;
+      padding: 15px;
+      margin: 15px 0;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    a.button:hover {
+      background: #cc4b00;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      text-align: center;
+      color: #777;
+    }
   </style>
 </head>
 <body>
-  <h1>🎉 Welcome to Your Onboarding!</h1>
-  <p class="instructions">Click the links below to complete your required training. Each section has a brief guide.</p>
-  
-  <h2>1. Safety Training</h2>
-  <p class="instructions">Use your personal email to register. Select "New Hire Safety Training" on the dashboard.</p>
-  <a class="button" href="https://training.example.com">Start Safety Training</a>
 
-  <h2>2. Timeclock Setup</h2>
-  <p class="instructions">Click the link and follow instructions to set up your login credentials.</p>
-  <a class="button" href="https://timeclock.example.com">Setup Timeclock</a>
+<header>
+  <img src="logo.jpg" alt="Jensen Tire & Auto Logo">
+</header>
 
-  <h2>3. Policy Handbook</h2>
-  <p class="instructions">Please review the policy handbook PDF before your first shift.</p>
-  <a class="button" href="https://example.com/policy.pdf">Download Policy Handbook</a>
+<div class="container">
+  <h1>🎉 Welcome to Jensen Tire & Auto!</h1>
+  <p>Start your onboarding by following the training steps below.</p>
 
-  <footer style="margin-top: 50px; font-size: 14px;">
+  <h2>Safety Training</h2>
+  <p>Use your personal email to register. Choose "New Hire Safety Training".</p>
+  <a class="button" href="#">Start Safety Training</a>
+
+  <h2>Timeclock Setup</h2>
+  <p>Follow this link to set up your login and complete registration.</p>
+  <a class="button" href="#">Setup Timeclock</a>
+
+  <h2>Policy Handbook</h2>
+  <p>Download and review the handbook before your first shift.</p>
+  <a class="button" href="#">Download Handbook</a>
+
+  <footer>
     Questions? Contact <a href="mailto:it@jensentire.com">it@jensentire.com</a>
   </footer>
+</div>
+
 </body>
 </html>
