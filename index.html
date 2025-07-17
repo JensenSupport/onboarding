@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Welcome to Jensen Tire & Auto Onboarding</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 40px; max-width: 800px; }
-    h1 { color: #0b5394; }
-    a.button {
-      display: block; 
-      margin: 10px 0; 
-      padding: 15px; 
-      background: #0b5394; 
-      color: white; 
-      text-decoration: none; 
-      border-radius: 8px; 
-      text-align: center;
-    }
-    .instructions { margin-bottom: 30px; font-size: 16px; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Jensen Tire & Auto Onboarding</title>
+    <link rel="stylesheet" href="shared-style.css">
 </head>
 <body>
-  <h1>🎉 Welcome to Your Onboarding!</h1>
-  <p class="instructions">Click the links below to complete your required training. Each section has a brief guide.</p>
-  
-  <h2>1. Safety Training</h2>
-  <p class="instructions">Use your personal email to register. Select "New Hire Safety Training" on the dashboard.</p>
-  <a class="button" href="https://training.example.com">Start Safety Training</a>
 
-  <h2>2. Timeclock Setup</h2>
-  <p class="instructions">Click the link and follow instructions to set up your login credentials.</p>
-  <a class="button" href="https://timeclock.example.com">Setup Timeclock</a>
+<header>
+    <img src="logo.jpg" alt="Jensen Tire & Auto Logo">
+</header>
 
-  <h2>3. Policy Handbook</h2>
-  <p class="instructions">Please review the policy handbook PDF before your first shift.</p>
-  <a class="button" href="https://example.com/policy.pdf">Download Policy Handbook</a>
+<div class="container">
+    <h1>Welcome to Jensen Tire & Auto Onboarding</h1>
+    <p>Select your store and role to access your training materials.</p>
 
-  <footer style="margin-top: 50px; font-size: 14px;">
-    Questions? Contact <a href="mailto:it@jensentire.com">it@jensentire.com</a>
-  </footer>
+    <select id="storeSelect">
+        <option value="">Select Store</option>
+        <option value="store-01">Store 01</option>
+        <option value="store-02">Store 02</option>
+        <option value="store-03">Store 03</option>
+    </select>
+
+    <div style="margin-top: 20px;">
+        <button onclick="redirect('manager')">Manager</button>
+        <button onclick="redirect('tech')">Technician</button>
+    </div>
+
+    <script>
+    function redirect(role) {
+        const store = document.getElementById('storeSelect').value;
+        if (!store) {
+            alert('Please select a store first.');
+            return;
+        }
+        window.location.href = store + '/' + role + '.html';
+    }
+    </script>
+
+</div>
+
 </body>
 </html>
