@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <title>Jensen Tire & Auto Onboarding</title>
     <link rel="stylesheet" href="shared-style.css">
+    <style>
+        .container {
+            text-align: center;
+        }
+        select, button {
+            padding: 15px;
+            font-size: 16px;
+            margin: 10px;
+            width: 80%;
+            max-width: 400px;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,31 +25,33 @@
 
 <div class="container">
     <h1>Welcome to Jensen Tire & Auto Onboarding</h1>
-    <p>Select your store and role to access your training materials.</p>
+    <p>Please select your store location from the list below:</p>
 
     <select id="storeSelect">
-        <option value="">Select Store</option>
-        <option value="store-01">Store 01</option>
-        <option value="store-02">Store 02</option>
-        <option value="store-03">Store 03</option>
+        <option value="">-- Select Store --</option>
+        <option value="store-01">Store 01 - 123 Main St, Cityville</option>
+        <option value="store-02">Store 02 - 456 Elm St, Townsville</option>
+        <option value="store-03">Store 03 - 789 Oak St, Villagetown</option>
     </select>
 
-    <div style="margin-top: 20px;">
-        <button onclick="redirect('manager')">Manager</button>
-        <button onclick="redirect('tech')">Technician</button>
+    <div>
+        <button onclick="goToStore()">Continue</button>
     </div>
 
     <script>
-    function redirect(role) {
+    function goToStore() {
         const store = document.getElementById('storeSelect').value;
         if (!store) {
             alert('Please select a store first.');
             return;
         }
-        window.location.href = store + '/' + role + '.html';
+        window.location.href = store + '/select-role.html';
     }
     </script>
 
+    <footer>
+        Questions? Contact <a href="mailto:it@jensentire.com">it@jensentire.com</a>
+    </footer>
 </div>
 
 </body>
