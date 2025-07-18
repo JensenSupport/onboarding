@@ -1,4 +1,3 @@
-
 body {
     font-family: Arial, sans-serif;
     background: #f7f7f7;
@@ -22,24 +21,40 @@ header img {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
 }
 h1 {
     color: #e65100;
 }
-a.button {
+a.button, button {
     display: block;
     background: #e65100;
     color: white;
     text-decoration: none;
     padding: 15px;
-    margin: 15px 0;
-    text-align: center;
+    margin: 15px auto;
+    width: 80%;
+    max-width: 400px;
     font-weight: bold;
     border-radius: 8px;
+    border: none;
     transition: background 0.3s;
+    font-size: 16px;
 }
-a.button:hover {
+a.button:hover, button:hover {
     background: #cc4b00;
+}
+select {
+    padding: 12px 15px;
+    font-size: 17px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
 }
 footer {
     margin-top: 40px;
