@@ -28,19 +28,17 @@ h1 {
 }
 a.button, button {
     display: block;
+    display: inline-block;
     background: #e65100;
     color: white;
     text-decoration: none;
-    padding: 15px;
-    margin: 15px auto;
-    width: 80%;
-    max-width: 400px;
-    font-weight: bold;
-    border-radius: 8px;
+@@ -40,25 +40,27 @@
     border: none;
     transition: background 0.3s;
     font-size: 16px;
+    text-align: center;
 }
+
 a.button:hover, button:hover {
     background: #cc4b00;
 }
