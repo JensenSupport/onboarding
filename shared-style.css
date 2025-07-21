@@ -62,27 +62,3 @@ footer {
     text-align: center;
     color: #777;
 }
-
-/* Mobile scaling */
-@media (max-width: 600px) {
-    body {
-        font-size: 20px;
-    }
-    h1 {
-        font-size: 30px;
-    }
-    p {
-        font-size: 19px;
-    }
-    select, button, a.button {
-        font-size: 20px;
-        padding: 20px;
-    }
-    header img {
-        max-height: 80px;
-    }
-    .container {
-        padding: 20px;
-        margin: 20px auto;
-    }
-}
