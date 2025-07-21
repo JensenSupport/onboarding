@@ -1,27 +1,52 @@
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #f7f7f7, #eeeeee);
+    background: #f7f7f7;
     color: #333;
-    font-size: 18px;
     margin: 0;
 }
-
+header {
+    background: #000;
+    text-align: center;
+    padding: 20px;
+}
+header img {
+    max-width: 300px;
+    width: 90%;
+    height: auto;
+}
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
 h1 {
-    font-size: 28px;
-    font-weight: bold;
     color: #e65100;
-    margin-bottom: 20px;
 }
-
-p {
-    font-size: 17px;
-    margin-bottom: 15px;
-}
-
-select {
+a.button, button {
+    display: block;
+    background: #e65100;
+    color: white;
+    text-decoration: none;
     padding: 15px;
-    font-size: 18px;
-    line-height: 1.6;
+    margin: 15px auto;
+    width: 80%;
+    max-width: 400px;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    transition: background 0.3s;
+    font-size: 16px;
+}
+a.button:hover, button:hover {
+    background: #cc4b00;
+}
+select {
+    padding: 12px 15px;
+    font-size: 17px;
     margin: 20px auto;
     width: 90%;
     max-width: 450px;
@@ -31,28 +56,6 @@ select {
     color: #333;
     border: 1px solid #ccc;
 }
-
-a.button, button {
-    display: inline-block;
-    background: #e65100;
-    color: white;
-    text-decoration: none;
-    padding: 18px;
-    margin: 15px auto;
-    width: 80%;
-    max-width: 400px;
-    font-weight: bold;
-    border-radius: 8px;
-    border: none;
-    transition: background 0.3s;
-    font-size: 18px;
-    text-align: center;
-}
-
-a.button:hover, button:hover {
-    background: #cc4b00;
-}
-
 footer {
     margin-top: 40px;
     font-size: 14px;
