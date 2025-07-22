@@ -4,16 +4,19 @@ body {
     color: #333;
     margin: 0;
 }
+
 header {
     background: #000;
     text-align: center;
     padding: 20px;
 }
+
 header img {
     max-width: 300px;
     width: 90%;
     height: auto;
 }
+
 .container {
     max-width: 800px;
     margin: 30px auto;
@@ -23,9 +26,11 @@ header img {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
 }
+
 h1 {
     color: #e65100;
 }
+
 a.button, button {
     display: inline-block;
     background: #e65100;
@@ -46,47 +51,55 @@ a.button, button {
 a.button:hover, button:hover {
     background: #cc4b00;
 }
+
 select {
-    padding: 12px 15px;
-    font-size: 20px;
+    padding: 20px;
+    font-size: 24px;
     margin: 20px auto;
     width: 90%;
     max-width: 750px;
+    min-height: 80px;
     border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.15);
     background: #fff;
     color: #333;
     border: 1px solid #ccc;
 }
+
 footer {
     margin-top: 40px;
     font-size: 14px;
     text-align: center;
     color: #777;
 }
-/* Mobile scaling */
+
 @media (max-width: 600px) {
     body {
         font-size: 20px;
     }
+
     h1 {
         font-size: 34px;
     }
+
     p {
         font-size: 20px;
     }
+
     select {
-        line-height: 3.0;
-        font-size: 35px;
+        line-height: 2;
+        font-size: 30px;
         padding: 28px;
         min-height: 120px;
     }
+
     a.button, button {
         font-size: 22px;
         padding: 22px;
         border-radius: 14px;
         min-height: 60px;
     }
+
     footer {
         font-size: 16px;
     }
