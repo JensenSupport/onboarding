@@ -29,6 +29,12 @@ header img {
 
 h1 {
     color: #e65100;
+    margin-bottom: 30px;
+}
+
+p {
+    font-size: 20px;
+    margin-bottom: 25px;
 }
 
 a.button, button {
@@ -36,15 +42,15 @@ a.button, button {
     background: #e65100;
     color: white;
     text-decoration: none;
-    padding: 15px;
+    padding: 20px;
     margin: 15px auto;
-    width: 80%;
-    max-width: 400px;
+    width: 90%;
+    max-width: 500px;
     font-weight: bold;
-    border-radius: 12px;
+    border-radius: 16px;
     border: none;
     transition: background 0.3s;
-    font-size: 20px;
+    font-size: 24px;
     text-align: center;
 }
 
@@ -59,8 +65,8 @@ select {
     width: 90%;
     max-width: 750px;
     min-height: 80px;
-    border-radius: 10px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    border-radius: 14px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     background: #fff;
     color: #333;
     border: 1px solid #ccc;
@@ -73,35 +79,40 @@ footer {
     color: #777;
 }
 
+/* MOBILE FRIENDLY */
 @media (max-width: 600px) {
     body {
-        font-size: 20px;
+        font-size: 24px;
     }
 
     h1 {
-        font-size: 34px;
+        font-size: 40px;
+        margin-bottom: 40px;
     }
 
     p {
-        font-size: 20px;
+        font-size: 24px;
+        margin-bottom: 30px;
     }
 
     select {
-        line-height: 2;
-        font-size: 30px;
-        padding: 16px;
-        min-height: 120px;
-        text-align: center;
+        font-size: 32px;
+        padding: 35px;
+        min-height: 150px;
+        line-height: 1.6;
+        border-radius: 18px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.25);
     }
 
     a.button, button {
-        font-size: 22px;
-        padding: 22px;
-        border-radius: 14px;
-        min-height: 60px;
+        font-size: 32px;
+        padding: 35px;
+        min-height: 150px;
+        border-radius: 18px;
     }
 
     footer {
-        font-size: 16px;
+        font-size: 18px;
+        margin-top: 50px;
     }
 }
