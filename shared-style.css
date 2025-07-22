@@ -81,6 +81,14 @@ footer {
 
 /* MOBILE FRIENDLY */
 @media (max-width: 600px) {
+        .container {
+        max-width: none;
+        width: 95%;
+        margin: 20px;
+        padding: 25px;
+        border-radius: 0;
+        box-shadow: none;
+    }
     body {
         font-size: 24px;
     }
