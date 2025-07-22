@@ -76,10 +76,10 @@ footer {
         font-size: 20px;
     }
     select {
-        line-height: 1.5;
-        font-size: 22px;
-        padding: 20px;
-        min-height: 60px;
+        line-height: 3.0;
+        font-size: 35px;
+        padding: 28px;
+        min-height: 120px;
     }
     a.button, button {
         font-size: 22px;
