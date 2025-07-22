@@ -125,3 +125,28 @@ footer {
         margin-top: 50px;
     }
 }
+@media (min-width: 601px) {
+    .container {
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    select, button {
+        font-size: 22px;
+        padding: 18px;
+        min-height: 70px;
+        max-width: 500px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+}
+
