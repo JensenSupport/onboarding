@@ -82,6 +82,12 @@ footer {
 /* MOBILE FRIENDLY */
 @media (max-width: 600px) {
     .container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
         max-width: none;
         width: 95%;
         margin: 20px;
