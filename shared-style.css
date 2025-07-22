@@ -89,8 +89,9 @@ footer {
     select {
         line-height: 2;
         font-size: 30px;
-        padding: 28px;
+        padding: 16px;
         min-height: 120px;
+        text-align: center;
     }
 
     a.button, button {
