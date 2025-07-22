@@ -81,7 +81,7 @@ footer {
 
 /* MOBILE FRIENDLY */
 @media (max-width: 600px) {
-        .container {
+    .container {
         max-width: none;
         width: 95%;
         margin: 20px;
