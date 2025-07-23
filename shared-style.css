@@ -26,9 +26,12 @@ section {
 
 /* Header stays fixed */
 header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
     background: #000;
-    text-align: center;
     padding: 20px;
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
