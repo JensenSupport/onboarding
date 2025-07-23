@@ -77,12 +77,12 @@ p {
 }
 
 select {
-    font-size: 20px;
-    padding: 25px;
+    font-size: 22px;
+    padding: 30px;
     margin-bottom: 30px;
     width: 100%;
     max-width: 600px;
-    min-height: 80px;
+    min-height: 120px;
     border-radius: 14px;
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     border: 1px solid #ccc;
@@ -91,8 +91,8 @@ select {
 }
 
 button, a.button {
-    font-size: 28px;
-    padding: 22px;
+    font-size: 24px;
+    padding: 16px;
     width: 100%;
     max-width: 600px;
     min-height: 70px;
@@ -105,7 +105,7 @@ button, a.button {
     cursor: pointer;
     transition: background 0.3s ease;
     display: inline-block;
-    margin-bottom: 30px;
+    margin-bottom: 26px;
 }
 
 button:hover, a.button:hover {
