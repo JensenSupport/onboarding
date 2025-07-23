@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jensen Tire & Auto Onboarding</title>
-    <link rel="stylesheet" href="shared-style.css">
+    <link rel="stylesheet" href="shared_style.css">
 </head>
 <body>
 
@@ -42,11 +42,14 @@
         <option value="Store 27">Store 27 - 18507 Oakmont Drive, Omaha, NE</option>
     </select>
 
-    <div>
-        <button onclick="goToStore()">Continue</button>
-    </div>
+    <button onclick="goToStore()">Continue</button>
 
-    <script>
+    <footer>
+        Questions? Contact <a href="mailto:support@jensentireandauto.com">Jensen Support</a>
+    </footer>
+</div>
+
+<script>
     function goToStore() {
         const store = document.getElementById('storeSelect').value;
         if (!store) {
@@ -55,12 +58,8 @@
         }
         window.location.href = store + '/select-role.html';
     }
-    </script>
-
-    <footer>
-        Questions? Contact <a href="mailto:support@jensentireandauto.com">Jensen Support</a>
-    </footer>
-</div>
+</script>
 
 </body>
 </html>
+
