@@ -7,7 +7,7 @@ html, body {
     overflow-y: scroll;
     display: block;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #f7f7f7, #ffffff);
+    background: linear-gradient(to bottom, #3D3D3D, #525252, #eaeaea);
     color: #333;
     font-size: 24px;
     scroll-behavior: smooth;
@@ -22,7 +22,7 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom, #eaeaea, #525252, #3D3D3D);
+    background: linear-gradient(to bottom, #3D3D3D, #525252, #eaeaea);
 }
 
 /* Header stays fixed */
@@ -115,17 +115,17 @@ button:hover, a.button:hover {
 /* Map section specific container */
 .map-container {
     background: linear-gradient(to bottom, #eaeaea, #525252, #3D3D3D);
-    padding: 40px 20px;
+    padding: 20px 10px;
     border-top: 1px solid #ddd;
     text-align: center;
-    max-width: 900px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
 .map-container h2 {
-    margin-bottom: 20px;
-    color: #e65100;
-    font-size: 28px;
+    margin-bottom: 24px;
+    color: #F97526;
+    font-size: 18px;
 }
 
 footer {
