@@ -130,6 +130,12 @@ footer {
     text-align: center;
     padding: 20px 0;
 }
+.footer-image-placeholder {
+    width: 100%;
+    margin-top: 30px;
+    text-align: center;
+}
+
 
 /* Desktop-specific overrides */
 @media (min-width: 900px) {
