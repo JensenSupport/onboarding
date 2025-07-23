@@ -7,7 +7,7 @@ html, body {
     overflow-y: scroll;
     display: block;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #3D3D3D, #525252, #eaeaea);
+    background: linear-gradient(to bottom, #eaeaea);
     color: #333;
     font-size: 24px;
     scroll-behavior: smooth;
@@ -115,7 +115,7 @@ button:hover, a.button:hover {
 
 /* Map section specific container */
 .map-container {
-    background: linear-gradient(to bottom, #eaeaea, #525252, #3D3D3D);
+    background: linear-gradient(to bottom, #525252);
     padding: 20px 10px;
     border-top: 1px solid #ddd;
     text-align: center;
