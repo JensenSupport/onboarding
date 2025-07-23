@@ -31,24 +31,27 @@ header {
     top: 0;
     z-index: 10;
     background: #000;
-    padding: 20px;
     text-align: center;
-}
-header::after {
-    content: "";
-    display: block;
-    height: 4px; /* thickness of the gradient line */
-    background: linear-gradient(to right, #000000, #F97526);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 header img {
     width: 100%;
     max-width: 300px;
     height: auto;
-    display: block;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 
+header::after {
+    content: "";
+    display: block;
+    height: 7px; /* thickness of the gradient line */
+    width: 100%;
+    background: linear-gradient(to right, #000000, #F97526);
+}
 /* Replaces container inside section */
 .container {
     width: 100%;
