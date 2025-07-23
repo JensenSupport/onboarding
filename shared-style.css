@@ -64,7 +64,7 @@ h1 {
 
 .subheading {
     font-size: 18px;
-    color: #666;
+    color: #FFFFFF;
     font-style: italic;
     margin-top: -10px;
     margin-bottom: 30px;
@@ -74,6 +74,7 @@ p {
     font-size: 20px;
     font-weight: 400;
     margin-bottom: 25px;
+    color: #FFFFFF;
 }
 
 select {
