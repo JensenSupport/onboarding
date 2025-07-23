@@ -7,7 +7,7 @@ html, body {
     overflow-y: scroll;
     display: block;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #eaeaea);
+    background: Solid(#eaeaea);
     color: #333;
     font-size: 24px;
     scroll-behavior: smooth;
