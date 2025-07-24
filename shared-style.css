@@ -162,6 +162,7 @@ footer {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
     height: 100vh;
+    scroll-behavior: smooth;
 }
 .snap-section {
     scroll-snap-align: start;
