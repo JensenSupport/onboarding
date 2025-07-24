@@ -28,8 +28,7 @@ section {
 .tall-section {
    min-height: auto;
    height: auto;
-   scroll-snap-align: start;
-   padding: 40px 20px;
+   padding: 80px 10px;
    background: linear-gradient(to bottom, #3D3D3D, #525252, #eaeaea);
    display: flex;
    justify-content: flex-start;
