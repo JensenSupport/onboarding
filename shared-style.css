@@ -25,6 +25,20 @@ section {
     box-sizing: border-box;
 }
 
+.tall-section {
+   min-height: auto;
+   height: auto;
+   scroll-snap-align: start;
+   padding: 40px 20px;
+   background: linear-gradient(to bottom, #3D3D3D, #525252, #eaeaea);
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   flex-direction: column;
+   box-sizing: border-box;
+}
+
+
 header {
     position: sticky;
     top: 0;
