@@ -65,6 +65,7 @@ h1 {
     max-width: 90%;
     margin: 0 auto 20px;
     color: #F97526;
+    text-align: center;
 }
 
 .subheading {
@@ -73,6 +74,7 @@ h1 {
     font-style: italic;
     margin-top: -10px;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 p {
@@ -80,6 +82,7 @@ p {
     font-weight: 400;
     margin-bottom: 25px;
     color: #FFFFFF;
+    text-align: center;
 }
 
 select {
