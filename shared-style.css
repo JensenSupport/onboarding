@@ -40,7 +40,7 @@ section {
 
 
 header {
-    position: static;
+    position: sticky;
     z-index: 10;
     background: #000;
     text-align: center;
