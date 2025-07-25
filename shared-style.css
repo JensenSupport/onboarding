@@ -147,7 +147,7 @@ footer {
 }
 
 .accordion-item {
-    background: #fff;
+    background: transparent;
     border-radius: 8px;
     margin-bottom: 10px;
     overflow: hidden;
@@ -167,7 +167,7 @@ footer {
     cursor: pointer;
     transition: background 0.3s ease;
     display: inline-block;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .accordion-content {
