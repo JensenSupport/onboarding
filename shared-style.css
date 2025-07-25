@@ -4,7 +4,6 @@ html, body {
     padding: 0;
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
-    overflow-x: hidden;
     display: block;
     font-family: Arial, sans-serif;
     background: #eaeaea;
@@ -29,7 +28,8 @@ section {
 .tall-section {
    min-height: auto;
    height: auto;
-   padding: 180px 10px;
+   scroll-snap-align: start;
+   padding: 40px 20px;
    background: linear-gradient(to bottom, #3D3D3D, #525252, #eaeaea);
    display: flex;
    justify-content: flex-start;
@@ -138,7 +138,7 @@ footer {
     font-size: 16px;
     color: #1D1D1D;
     text-align: center;
-    padding: 40px 0;
+    padding: 20px 0;
 }
 
 /* Accordion FAQ */
