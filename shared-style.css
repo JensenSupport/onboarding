@@ -87,7 +87,7 @@ h1 {
     color: #FFFFFF;
     font-style: italic;
     margin-top: -30px;
-    margin-bottom: 120px;
+    margin-bottom: 80px;
 }
 
 p {
@@ -204,7 +204,7 @@ footer {
 .quote-footer {
   margin-top: 50px;
   text-align: center;
-  color: #f26522;
+  color: #525252;
 }
 
 @media (min-width: 900px) {
