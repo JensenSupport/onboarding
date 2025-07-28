@@ -55,11 +55,7 @@
 </div>
 
 <section id="details" class="tall-section">
-  <div class="container">
-    <h1>“Quality means doing it right when no one is looking.”</h1>
-    <p class="subheading">– Henry Ford</p>
-  </div>
-
+  
   <div class="container accordion">
     <h1>New Hire FAQ</h1>
     <div class="accordion-item">
@@ -76,10 +72,25 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container feedback-section">
     <h1>We value your input!</h1>
-    <a class="button" href="https://forms.microsoft.com/your-feedback-form-url" target="_blank">Leave Feedback</a>
+    <form id="feedback-form">
+      <textarea
+        id="feedback"
+        name="feedback"
+        placeholder="Leave your feedback here..."
+      ></textarea>
+      <br />
+      <button type="submit" class="button">
+        Submit
+      </button>
+    </form>
   </div>
+
+  <div class="quote-footer">
+    <p class="quote">“Quality means doing it right when no one is looking.”</p>
+    <p class="quote-author">– Henry Ford</p>
+  </div> 
 </section>
 
 <script>
