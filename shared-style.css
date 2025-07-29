@@ -224,14 +224,14 @@ p.quote-author {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  margin-top: 30px;
+  margin-top: 60px;
 }
 
 .role-buttons .button {
-  width: 80%;
-  max-width: 300px;
+  width: 100%;
+  max-width: 600px;
   text-align: center;
-  padding: 10px 0;
+  padding: 10px 0 auto;
   font-size: 16px;
   text-align: center;
   box-sizing: border-box;
