@@ -237,6 +237,7 @@ p.quote-author {
   box-sizing: border-box;
   line-height: 1.2;
   border-radius: 14px;
+  margin-bottom: 20px;
 }
 
 @media (min-width: 900px) {
