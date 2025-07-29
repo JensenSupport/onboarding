@@ -16,6 +16,7 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             font-size: 16px;
             word-wrap: break-word;
+            transition: background 0.3s ease;
         }
         .credentials p {
             margin: 5px 0;
@@ -26,15 +27,8 @@
             border-radius: 4px;
             font-size: 16px;
         }
-        .copy-btn {
-            margin-top: 10px;
-            padding: 8px 12px;
-            font-size: 14px;
-            background: #F97526;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
+        .cred-box:hover {
+            background: #f0f0f0;
         }
     </style>
 </head>
@@ -57,7 +51,7 @@
         </div>
 
         <a class="button" href="https://www.thegoodyearlearningcenter.com/" target="_blank">Goodyear</a>
-        <div class="credentials">
+        <div class="credentials" onclick="copyToClipboard('Conti - Username: store01user | Password: conti123')">
             <p><strong>Username:</strong> <code>store01.gy@jensentire.com</code></p>
             <p><strong>Password:</strong> <code>Goodyear2024!</code></p>
         </div>
@@ -80,13 +74,12 @@
 </section>
 
 <script>
-function copyCreds(user, pass) {
-    const text = `Username: ${user}\nPassword: ${pass}`;
-    navigator.clipboard.writeText(text).then(() => {
-        alert("Credentials copied to clipboard!");
-    });
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Credentials copied to clipboard.");
+  });
 }
 </script>
-    
+
 </body>
 </html>
