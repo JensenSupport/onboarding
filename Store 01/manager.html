@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,81 +6,28 @@
     <meta charset="UTF-8">
     <title>Manager Training | Store 01</title>
     <link rel="stylesheet" href="../shared-style.css">
-    <style>
-        .credentials {
-            background: #000;
-            color: #333;
-            padding: 15px;
-            margin-top: 10px;
-            margin-bottom: 50px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            font-size: 16px;
-            word-wrap: break-word;
-            transition: background 0.3s ease;
-        }
-        .credentials p {
-            margin: 5px 0;
-        }
-        .credentials code {
-            background: #000;
-            padding: 4px 6px;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        .cred-box:hover {
-            background: #f0f0f0;
-        }
-    </style>
 </head>
 <body>
 
 <header>
     <img src="../logo.jpg" alt="Jensen Tire & Auto Logo">
 </header>
-    
-<section id="role">
-  <div class="container">
+
+<section id="role">    
+ <div class="container">
     <h1>Manager Training - Store 01</h1>
     <p>Welcome to your custom training page.</p>
 
-    <div class="role-buttons">
-        <a class="button" href="https://engage360training.com" target="_blank">Conti (Engage360)</a>
-        <div class="credentials" onclick="copyToClipboard('Conti - Username: store01user | Password: conti123')">
-            <p><strong>Username:</strong> <code>store01@jensentire.com</code></p>
-            <p><strong>Password:</strong> <code>Welcome2024!</code></p>
-        </div>
-
-        <a class="button" href="https://www.thegoodyearlearningcenter.com/" target="_blank">Goodyear</a>
-        <div class="credentials">
-            <p><strong>Username:</strong> <code>store01.gy@jensentire.com</code></p>
-            <p><strong>Password:</strong> <code>Goodyear2024!</code></p>
-        </div>
-
-        <a class="button" href="https://go.team1bg.com/" target="_blank">BG Training</a>
-        <div class="credentials">
-            <p><em>Credentials coming soon</em></p>
-        </div>
-
-        <a class="button" href="https://www.youtube.com/watch?v=dN11zcwkbxA&list=PLZjmO5pvmh7TNPAngksyF8c25jk7x-wiw" target="_blank">TireWorks YouTube Playlist</a>
-        <div class="credentials">
-            <p><em>Credentials coming soon</em></p>
-        </div>
-    </div>
+  <div class="role-buttons">    
+    <a class="button" href="#">Sample Training Link 1</a>
+    <a class="button" href="#">Sample Training Link 2</a>
+  </div>
 
     <footer>
         Questions? Contact <a href="mailto:it@jensentire.com">it@jensentire.com</a>
     </footer>
   </div>
 </section>
-
-<script>
-function copyToClipboard(text) {
-  navigator.clipboard.writeText(text).then(() => {
-    alert("Credentials copied to clipboard.");
-  });
-}
-</script>
-
+    
 </body>
 </html>
