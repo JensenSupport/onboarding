@@ -247,21 +247,14 @@ p.quote-author {
   margin-bottom: 30px;
 }
 .role-grid .button {
-  background: #F97526;
-  color: #fff;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  border-radius: 10px;
   text-align: center;
+  padding: 10px;
+  margin: 5px 5px 5px;
   font-size: 24px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  transition: background 0.3s ease;
-  cursor: pointer;
-}
-
-.role-grid a {
-  text-decoration: #fff;
+  text-align: center;
+  box-sizing: border-box;
+  line-height: 1.2;
+  border-radius: 14px;
 }
 
 .training-buttons {
