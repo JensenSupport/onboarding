@@ -243,13 +243,13 @@ p.quote-author {
 .role-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 30px;
+  gap: 20px;
+  margin-bottom: 50px;
 }
 .role-grid .button {
   text-align: center;
-  padding: 10px;
-  margin: 5px 15px 5px;
+  padding: 10px auto;
+  margin: 5px 5px;
   font-size: 24px;
   text-align: center;
   box-sizing: border-box;
