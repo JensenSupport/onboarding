@@ -240,6 +240,13 @@ p.quote-author {
   margin-bottom: 20px;
 }
 
+.role-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
 .training-buttons {
   display: flex;
   flex-direction: column;
