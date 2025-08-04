@@ -100,18 +100,16 @@ function copyToClipboard(text) {
 }
 </script>
 
-    <script src="https://jensensupport.co/assets/chat/chat-no-jquery.min.js"></script>
+<script src="https://jensensupport.co/assets/chat/chat-no-jquery.min.js"></script>
 <script>
-  var zammadChatInstance;
-
-  (function() {
-    zammadChatInstance = new ZammadChat({
-      background: 'rgb(73,73,73)',
-      fontSize: '12px',
-      chatId: 1,
-      show: false // Don't auto-show
-    });
-  })();
+(function() {
+  new ZammadChat({
+    background: 'rgb(73,73,73)',
+    fontSize: '12px',
+    chatId: 1,
+    show: false
+  });
+})();
 </script>
 
 </body>
