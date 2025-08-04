@@ -85,6 +85,11 @@
 </section>
 
 <script>
+function toggleMenu() {
+  const menu = document.getElementById("nav-menu");
+  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+}
+    
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(function() {
         alert('Copied: ' + text);
