@@ -321,6 +321,12 @@ p.quote-author {
   background: #222;
 }
 
+#zammad-chat-root * {
+  all: unset;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
 @media (min-width: 900px) {
     body { font-size: 18px; }
     h1 { font-size: 32px; }
