@@ -303,7 +303,7 @@ p.quote-author {
   flex-direction: column;
   position: absolute;
   top: 70px;
-  right: 10px;
+  left: 10px;
   background: #000;
   padding: 10px;
   border-radius: 8px;
