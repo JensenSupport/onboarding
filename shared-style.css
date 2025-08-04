@@ -288,6 +288,39 @@ p.quote-author {
   margin-bottom: 30px;
 }
 
+#hamburger {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 20;
+}
+
+#nav-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  right: 10px;
+  background: #000;
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 20;
+}
+
+#nav-menu a {
+  color: #fff;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+#nav-menu a:hover {
+  background: #222;
+}
+
 @media (min-width: 900px) {
     body { font-size: 18px; }
     h1 { font-size: 32px; }
