@@ -33,6 +33,28 @@
             margin-top: 15px;
         }
     </style>
+
+    <script src="https://jensensupport.co/assets/chat/chat-no-jquery.min.js"></script>
+<script>
+  var zammadChatInstance;
+
+  (function() {
+    zammadChatInstance = new ZammadChat({
+      background: 'rgb(73,73,73)',
+      fontSize: '12px',
+      chatId: 1,
+      show: false // Don't auto-show
+    });
+  })();
+
+  function openSupportChat() {
+    if (zammadChatInstance) {
+      zammadChatInstance.show(); // Programmatically open chat window
+    } else {
+      alert("Chat is not available right now.");
+    }
+  }
+</script>
 </head>
 <body>
 
@@ -90,29 +112,6 @@ function toggleMenu() {
   const menu = document.getElementById("nav-menu");
   menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
 }
-
-</script>
-    
-<script src="https://jensensupport.co/assets/chat/chat-no-jquery.min.js"></script>
-<script>
-  var zammadChatInstance;
-
-  (function() {
-    zammadChatInstance = new ZammadChat({
-      background: 'rgb(73,73,73)',
-      fontSize: '12px',
-      chatId: 1,
-      show: false // Don't auto-show
-    });
-  })();
-
-  function openSupportChat() {
-    if (zammadChatInstance) {
-      zammadChatInstance.show(); // Programmatically open chat window
-    } else {
-      alert("Chat is not available right now.");
-    }
-  }
     
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(function() {
