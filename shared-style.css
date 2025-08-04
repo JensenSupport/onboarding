@@ -291,7 +291,7 @@ p.quote-author {
 #hamburger {
   position: absolute;
   top: 20px;
-  right: 20px;
+  left: 20px;
   font-size: 28px;
   color: #fff;
   cursor: pointer;
