@@ -321,6 +321,19 @@ p.quote-author {
   background: #222;
 }
 
+.zammad-chat-send {
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+    height: auto !important;
+    min-height: 40px !important;
+    width: auto !important;
+    border-radius: 6px !important;
+    background-color: #F97526 !important;
+    color: #fff !important;
+    border: none !important;
+    cursor: pointer !important;
+}
+
 @media (min-width: 900px) {
     body { font-size: 18px; }
     h1 { font-size: 32px; }
