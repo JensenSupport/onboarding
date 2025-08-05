@@ -85,6 +85,8 @@
   </div>
 </section>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
 function toggleMenu() {
   const menu = document.getElementById("nav-menu");
@@ -100,16 +102,15 @@ function copyToClipboard(text) {
 }
 </script>
 
-<script src="https://jensensupport.co/assets/chat/chat-no-jquery.min.js"></script>
+<script src="https://jensensupport.co/assets/chat/chat.min.js"></script>
 <script>
-(function() {
+$(function() {
   new ZammadChat({
-    background: 'rgb(73,73,73)',
     fontSize: '12px',
     chatId: 1,
     show: false
   });
-})();
+});
 </script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
