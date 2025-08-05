@@ -111,6 +111,19 @@ function copyToClipboard(text) {
   });
 })();
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const chatLink = document.getElementById("chat-link");
+    chatLink.addEventListener("click", function(e) {
+      e.preventDefault();
+      if (window.ZammadChat) {
+        ZammadChat.show();
+      } else {
+        alert("Chat is still loading, please try again.");
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
