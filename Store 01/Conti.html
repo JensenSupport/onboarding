@@ -164,10 +164,10 @@ $(function() {
 </script>
 
 <script>
-function toggleMenu() {
-  const menu = document.getElementById("nav-menu");
-  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
-}
+  function toggleMenu() {
+    const menu = document.getElementById("nav-menu");
+    menu.classList.toggle("open");
+  }
 
 function closeMenu() {
     const menu = document.getElementById("nav-menu");
