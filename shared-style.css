@@ -310,6 +310,10 @@ p.quote-author {
   z-index: 20;
 }
 
+#nav-menu.open {
+  display: block;
+}
+
 #nav-menu a {
   color: #fff;
   padding: 10px;
