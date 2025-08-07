@@ -4,14 +4,27 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Technician Training | Store 01</title>
+    <title>Technician Training | Store 17</title>
     <link rel="stylesheet" href="../shared-style.css">
 </head>
 <body>
 
 <header>
+  <a href="../index.html">
     <img src="../logo.jpg" alt="Jensen Tire & Auto Logo">
+  </a>
+<div id="hamburger" onclick="toggleMenu()">☰</div>
 </header>
+
+<nav id="nav-menu">
+  <a href="../index.html">Main Dashboard</a>
+  <a href="../Store%2017/select-role.html">Role selection</a>
+  <a href="../Store%2017/manager.html">Manager Courses</a>
+  <a href="../Store%2017/tech.html">Technician Courses</a>
+  <a href="#" onclick="openFeedbackPopup()">Submit Feedback</a>
+  <a href="#" class="nav-link open-zammad-chat">Jensen Support chat</a>
+  <a href="https://jensentireandauto.com" target="_blank">Retail Site</a>
+</nav>
 
 <section id="role">    
  <div class="container">
@@ -19,15 +32,123 @@
     <p>Welcome to your custom training page.</p>
 
   <div class="role-buttons">    
-    <a class="button" href="#">Sample Training Link 1</a>
-    <a class="button" href="#">Sample Training Link 2</a>
+    <a class="button" href="https://go.team1bg.com" target="_blank">BG Training</a>
+    <a class="button" href="Hunter.html">Hunter Training</a>
+    <a class="button" href="TodaysClass.html">Todays Class</a>
+    <a class="button" href="NAPA.html">NAPA Training</a>
   </div>
 
     <footer>
-        Questions? Contact <a href="mailto:it@jensentire.com">it@jensentire.com</a>
+        Questions? Contact <a href="mailto:support@jensentireandauto.com">Jensen Support</a>
     </footer>
   </div>
 </section>
 
+<div id="feedbackPopup" class="feedback-popup">
+  <div class="feedback-content">
+    <h3>We value your input!</h3>
+    <form id="feedback-form">
+      <textarea
+        id="feedback"
+        name="feedback"
+        placeholder="Leave your feedback here..."
+        required
+      ></textarea>
+      <br />
+      <button type="submit" class="button">Submit</button>
+      <button type="button" class="button" onclick="closeFeedbackPopup()">Cancel</button>
+    </form>
+    <p id="thank-you" style="display: none; color: black; margin-top: 20px;">Thank you for your feedback!</p>
+  </div>
+</div>
+
+<script>
+function openFeedbackPopup() {
+  document.getElementById('feedbackPopup').style.display = 'block';
+}
+
+function closeFeedbackPopup() {
+  document.getElementById('feedbackPopup').style.display = 'none';
+}
+
+document.getElementById("feedback-form").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const feedback = document.getElementById("feedback").value;
+
+  const response = await fetch("https://default4e006550b51242c29ec2b301c0fa6a.51.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/5a8c354b3a634ab893a5879f150f715d/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Jr-fRt0XwxxcfPUPvbpjS-xwfZlb2rjb4J_L2xwhXFg", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ feedback })
+  });
+
+  if (response.ok) {
+    document.getElementById("feedback").value = "";
+    document.getElementById("thank-you").style.display = "block";
+    setTimeout(() => {
+      document.getElementById("thank-you").style.display = "none";
+      closeFeedbackPopup();
+    }, 2000);
+  } else {
+    alert("Submission failed. Please try again.");
+  }
+});
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://jensensupport.co/assets/chat/chat.min.js"></script>
+
+<script>
+$(function() {
+  const zammadChatInstance = new ZammadChat({
+    title: 'Jensen Support',
+    background: 'rgb(249, 117, 38)',
+    fontSize: '12px',
+    chatId: 1,
+    show: false
+  });
+
+  $('.open-zammad-chat').on('click', function(e) {
+    e.preventDefault();
+    zammadChatInstance.show();
+  });
+});
+</script>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("nav-menu");
+    menu.classList.toggle("open");
+  }
+
+function closeMenu() {
+    const menu = document.getElementById("nav-menu");
+    menu.classList.remove("open");
+  }
+
+  document.addEventListener("click", function (event) {
+    const menu = document.getElementById("nav-menu");
+    const hamburger = document.getElementById("hamburger");
+
+    if (
+      menu.classList.contains("open") &&
+      !menu.contains(event.target) &&
+      !hamburger.contains(event.target)
+    ) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeMenu();
+    }
+  });
+
+</script>
+    
 </body>
 </html>
