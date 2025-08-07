@@ -3,16 +3,47 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Manager Training | Store 11</title>
+    <title>Goodyear Training | Store 11</title>
     <link rel="stylesheet" href="../shared-style.css">
+    <style>
+        .cred-box {
+            width: 90%;
+            max-width: 600px;
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .cred-box:hover {
+            background: #222;
+        }
+        .cred-box small {
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        .instructions {
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
 
 <header>
-  <a href="../index.html">
-    <img src="../logo.jpg" alt="Jensen Tire & Auto Logo">
-  </a>
-<div id="hamburger" onclick="toggleMenu()">☰</div>
+     <a href="../Store%2011/manager.html">
+      <img src="../logo.jpg" alt="Jensen Tire & Auto Logo">
+    </a>
+    <div id="hamburger" onclick="toggleMenu()">☰</div>
 </header>
 
 <nav id="nav-menu">
@@ -22,35 +53,30 @@
   <a href="../Store%2011/tech.html">Technician Courses</a>
   <a href="#" onclick="openFeedbackPopup()">Submit Feedback</a>
   <a href="#" class="nav-link open-zammad-chat">Jensen Support chat</a>
-  <a href="https://jensentireandauto.com" target="_blank">Retail Site</a>
+  <a href="https://jensentireandauto.com/" target="_blank">Retail Site</a>
 </nav>
+    
+<section id="role">
+  <div class="container">
+    <h1>Goodyear Training - Store 11</h1>
+    <p>Welcome to the Goodyear Training page.</p>
 
-<section id="role">    
- <div class="container">
-    <h1>Manager Training - Store 11</h1>
-    <p>Welcome to your custom training page.</p>
+    <div class="cred-box" onclick="copyToClipboard('187120')">
+      Nonsig: 187120<br>
+      <small>(Tap to copy)</small>
+    </div>
+  
+  <div class="training-buttons">    
+    <a class="button" href="https://www.thegoodyearlearningcenter.com/" target="_blank">Launch Training</a>
+  </div>
+      
+    <p class="instructions">
+      <div class="training-buttons">    
+        <a class="button" href="../Goodyear.pdf" target="_blank">Instruction Guide</a>
+      </div>
+    </p>
 
-<div class="role-grid">
-  <a class="button" href="Conti.html">Continental Training
-  </a>
-  <a class="button" href="Goodyear.html">Goodyear Training
-  </a>
-  <a class="button" href="Hunter.html">Hunter Training
-  </a>
-  <a class="button" href="TodaysClass.html">Todays Class
-  </a>
-  <a class="button" href="https://go.team1bg.com" target="_blank">BG Training
-  </a>
-  <a class="button" href="NAPA.html">NAPA Training
-  </a>
-  <a class="button" href="https://www.youtube.com/watch?v=dN11zcwkbxA&list=PLZjmO5pvmh7TNPAngksyF8c25jk7x-wiw" target="_blank">Tireworks Resources
-  </a>
-  <a class="button" href="spiff.html">Rewards/ Spiffs
-  </a>
-</div>
-
-
-    <footer>
+    <footer style="margin-top: 40px;">
         Questions? Contact <a href="mailto:support@jensentireandauto.com">Jensen Support</a>
     </footer>
   </div>
@@ -131,36 +157,19 @@ $(function() {
 </script>
 
 <script>
-  function toggleMenu() {
-    const menu = document.getElementById("nav-menu");
-    menu.classList.toggle("open");
-  }
+function toggleMenu() {
+  const menu = document.getElementById("nav-menu");
+  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+}
 
-function closeMenu() {
-    const menu = document.getElementById("nav-menu");
-    menu.classList.remove("open");
-  }
-
-  document.addEventListener("click", function (event) {
-    const menu = document.getElementById("nav-menu");
-    const hamburger = document.getElementById("hamburger");
-
-    if (
-      menu.classList.contains("open") &&
-      !menu.contains(event.target) &&
-      !hamburger.contains(event.target)
-    ) {
-      closeMenu();
-    }
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(function() {
+    alert('Copied: ' + text);
+  }, function(err) {
+    alert('Failed to copy: ' + err);
   });
-
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      closeMenu();
-    }
-  });
-
+}
 </script>
-    
+
 </body>
 </html>
