@@ -18,16 +18,17 @@
 
 <header>
   <img src="logo.jpg" alt="Jensen Tire & Auto Logo">
+  <!-- Your site-wide nav can have: <a href="/">Home</a> -->
 </header>
 
 <div class="snap-container">
   <section id="onboarding">
     <div class="container">
       <h1>Welcome to Jensen Tire & Auto Onboarding</h1>
-      <p class="subheading">Sign in with your company username. We’ll send you to the correct store and role.</p>
+      <p class="subheading">Sign in with your company username. We’ll route you to the right store and role.</p>
 
-      <!-- LOGIN -->
-      <div class="card stack" id="login-card">
+      <!-- SIGNED-OUT: username/password -->
+      <div class="card stack" id="loginCard">
         <label class="muted">Username</label>
         <input id="username" placeholder="e.g. bmiller" autocomplete="username">
         <label class="muted">Password</label>
@@ -39,6 +40,15 @@
           <a href="mailto:support@jensentireandauto.com">Jensen Support</a>.
         </p>
         <pre id="status" class="hidden"></pre>
+      </div>
+
+      <!-- SIGNED-IN: offer continue / sign out instead of auto-redirect -->
+      <div class="card stack hidden" id="signedInBox">
+        <p>Signed in as <strong id="who"></strong></p>
+        <div>
+          <button id="continueBtn">Continue to my hub</button>
+          <button id="signOutBtn">Sign out</button>
+        </div>
       </div>
 
       <footer>
@@ -58,7 +68,7 @@
     </div>
     <div class="accordion-item">
       <button onclick="toggleAccordion(this)">How do I access training materials?</button>
-      <div class="accordion-content">After sign-in, you’ll be routed to your store’s role-specific hub.</div>
+      <div class="accordion-content">After sign-in, choose “Continue to my hub.” We’ll send you to your store’s role page.</div>
     </div>
     <div class="accordion-item">
       <button onclick="toggleAccordion(this)">Who do I contact with issues?</button>
@@ -132,7 +142,7 @@
   };
 
   // ===== 2) SETTINGS =====
-  const FAKE_DOMAIN = "jta.local"; // the domain you used when creating users (username@jta.local)
+  const FAKE_DOMAIN = "jta.local"; // domain you used in Auth (username@jta.local)
 
   // ===== 3) INIT =====
   const app  = initializeApp(firebaseConfig);
@@ -142,12 +152,26 @@
   // UI helpers
   const $ = (id) => document.getElementById(id);
   const statusEl = $("status");
+  const loginCard = $("loginCard");
+  const signedInBox = $("signedInBox");
+
   function showStatus(obj) {
     statusEl.classList.remove("hidden");
     statusEl.textContent = JSON.stringify(obj, null, 2);
   }
+  function destFor({ storeNumber, role }) {
+    const folder = encodeURIComponent(storeNumber);
+    const page = (String(role).toLowerCase() === "manager") ? "manager.html" : "technician.html";
+    return `${folder}/${page}`;
+  }
+  async function getAssignment(email) {
+    const dirRef = doc(db, "directory", email.toLowerCase());
+    const dirSnap = await getDoc(dirRef);
+    if (!dirSnap.exists()) throw new Error("No assignment found for your username. Contact support.");
+    return dirSnap.data(); // { storeNumber, role }
+  }
 
-  // Sign in with username + password (mapped to username@FAKE_DOMAIN)
+  // SIGN IN (username + password mapped to fake email)
   $("signIn").onclick = async () => {
     const uname = $("username").value.trim().toLowerCase();
     const pw = $("password").value;
@@ -155,24 +179,39 @@
     try {
       const email = `${uname}@${FAKE_DOMAIN}`;
       await signInWithEmailAndPassword(auth, email, pw);
-      // onAuthStateChanged will handle the rest
+      // after sign-in, onAuthStateChanged will run
     } catch (e) {
       showStatus({ error: e.message });
     }
   };
 
-  // After sign-in: read directory entry and route
+  // AUTH STATE: show either login form OR "continue / sign out"
   onAuthStateChanged(auth, async (user) => {
-    if (!user) return;
-    try {
-      const email = (user.email || "").toLowerCase(); // e.g., bmiller@jta.local
-      const dirRef = doc(db, "directory", email);
-      const dirSnap = await getDoc(dirRef);
+    if (!user) {
+      // signed out → show login
+      loginCard.classList.remove("hidden");
+      signedInBox.classList.add("hidden");
+      statusEl.classList.add("hidden");
+      return;
+    }
 
-      if (!dirSnap.exists()) {
+    try {
+      const email = (user.email || "").toLowerCase();
+      const assign = await getAssignment(email);
+
+      // Show the signed-in panel; no auto-redirect
+      $("who").textContent = email.includes("@") ? email.split("@")[0] : email;
+      loginCard.classList.add("hidden");
+      signedInBox.classList.remove("hidden");
+
+      $("continueBtn").onclick = () => {
+        window.location.href = destFor(assign);
+      };
+      $("signOutBtn").onclick = async () => {
         await signOut(auth);
-        return showStatus({ error: "No assignment found for your username. Contact support." });
-      }
+        // Return to this page signed out
+        window.location.href = window.location.pathname;
+      };
 
       // Ensure a per-user profile (optional)
       const profRef = doc(db, "profiles", user.uid);
@@ -183,20 +222,11 @@
           createdAt: new Date().toISOString()
         }, { merge: true });
       }
-
-      const { storeNumber, role } = dirSnap.data();
-      if (!storeNumber || !role) {
-        await signOut(auth);
-        return showStatus({ error: "Your directory entry is incomplete. Contact support." });
-      }
-
-      // Route to {Store XX}/{manager.html|technician.html} (relative path works on GitHub Pages)
-      const storeFolder = encodeURIComponent(storeNumber); // handles spaces in folder names
-      const rolePage = (role === "Manager") ? "manager.html" : "technician.html";
-      const dest = `${storeFolder}/${rolePage}`;
-      window.location.href = dest;
-
     } catch (e) {
+      // If user is signed in but has no directory entry, sign out and show message
+      await signOut(auth);
+      loginCard.classList.remove("hidden");
+      signedInBox.classList.add("hidden");
       showStatus({ error: e.message });
     }
   });
@@ -204,3 +234,4 @@
 
 </body>
 </html>
+
