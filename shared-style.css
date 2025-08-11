@@ -432,6 +432,11 @@ p.quote-author {
   flex-wrap: wrap;    
 }
 
+#signedInBox p,
+#signedInText {
+  color: #000;
+  margin: 0;
+}
 
 @media (min-width: 900px) {
     body { font-size: 18px; }
