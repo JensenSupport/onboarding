@@ -424,6 +424,13 @@ p.quote-author {
 
 .entry .muted { color: #666; font-size: 14px; }
 
+.actions {
+  display: flex;
+  gap: 0.75rem;  
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;    
+}
 
 
 @media (min-width: 900px) {
