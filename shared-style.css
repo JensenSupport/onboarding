@@ -380,7 +380,7 @@ p.quote-author {
 .entry .hidden { display: none; }
 
 .entry .card {
-  background: #525252;
+  background: #eaeaea;
   border-radius: 12px;
   padding: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,.08);
@@ -392,9 +392,9 @@ p.quote-author {
 .entry .stack > * { margin-bottom: .75rem; }
 
 .entry button {
-    font-size: 24px;
+    font-size: 22px;
     padding: 12px;
-    width: 80%;
+    width: 85%;
     max-width: 600px;
     min-height: 40px;
     background: #F97526;
@@ -407,7 +407,7 @@ p.quote-author {
     transition: background 0.3s ease;
     display: inline-block;
     margin-bottom: 30px;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .entry input, button { padding: .4rem .4rem;
