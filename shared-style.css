@@ -112,7 +112,7 @@ select {
 }
 
 button, a.button {
-    font-size: 24px;
+    font-size: 21px;
     padding: 16px;
     width: 100%;
     max-width: 600px;
