@@ -384,7 +384,7 @@ p.quote-author {
   border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 4px 10px rgba(0,0,0,.08);
-  max-width: 720px;
+  max-width: 680px;
   margin: 1rem auto;
   text-align: center;
 }
@@ -393,8 +393,8 @@ p.quote-author {
 
 .entry button {
     font-size: 24px;
-    padding: 16px;
-    width: 100%;
+    padding: 12px;
+    width: 60%;
     max-width: 600px;
     min-height: 40px;
     background: #F97526;
@@ -411,7 +411,7 @@ p.quote-author {
 }
 
 .entry input, button { padding: .4rem .4rem;
-  font-size: 14px;
+  font-size: 12px;
   }
 
 .entry pre {
@@ -422,7 +422,7 @@ p.quote-author {
   font-size: 16px;
 }
 
-.entry .muted { color: #666; font-size: 14px; }
+.entry .muted { color: #666; font-size: 12px; }
 
 .actions {
   display: flex;
