@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <title>BG Training | Store 17</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Continental Training | Store 21</title>
     <link rel="stylesheet" href="../shared-style.css">
     <style>
         .cred-box {
-            width: 90%;
-            max-width: 600px;
             background: #000;
             color: #fff;
             padding: 10px;
@@ -20,7 +18,6 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             transition: background 0.3s ease;
             cursor: pointer;
-            display: inline-block;
         }
         .cred-box:hover {
             background: #222;
@@ -40,32 +37,47 @@
 <body>
 
 <header>
-     <a href="../Store%2017/manager.html">
-      <img src="../logo.jpg" alt="Jensen Tire & Auto Logo">
-    </a>
-    <div id="hamburger" onclick="toggleMenu()">☰</div>
+  <a href="../Store%2021/manager.html">
+    <img src="../logo.jpg" alt="Jensen Tire & Auto Logo">
+  </a>
+  <div id="hamburger" onclick="toggleMenu()">☰</div>
 </header>
 
 <nav id="nav-menu">
   <a href="../index.html">Main Dashboard</a>
-  <a href="../Store%2017/manager.html">Manager Courses</a>
+  <a href="../Store%2021/manager.html">Manager Courses</a>
   <a href="#" onclick="openFeedbackPopup()">Submit Feedback</a>
   <a href="#" class="nav-link open-zammad-chat">Jensen Support chat</a>
-  <a href="https://jensentireandauto.com/" target="_blank">Retail Site</a>
+  <a href="https://jensentireandauto.com" target="_blank">Retail Site</a>
 </nav>
     
 <section id="role">
   <div class="container">
-    <h1>BG Training - Store 17</h1>
-    <p>Contact your Manager to gain access to the required training.</p>
+    <h1>Continental Training - Store 21</h1>
+    <p>Follow the instructions below to create a Continental account and access required training.</p>
 
-  <div class="training-buttons">    
-    <a class="button" href="https://go.team1bg.com" target="_blank">Launch BG Training</a>
-  </div>
+    <div class="grid-container">
+      <div class="cred-box" onclick="copyToClipboard('Jensen Tire & Auto #21')">
+        Store Name: Jensen Tire & Auto #21<br><small>(Tap to copy)</small>
+      </div>
+      <div class="cred-box" onclick="copyToClipboard('8288755')">
+        Account Number: 8288755<br><small>(Tap to copy)</small>
+      </div>
+      <div class="cred-box" onclick="copyToClipboard('402-292-3900')">
+        Store Phone Number: <a href="tel:4022923900">402-292-3900</a><br><small>(Tap to copy)</small>
+      </div>
+      <div class="cred-box" onclick="copyToClipboard('11501 S. 42nd St Bellevue NE 68123')">
+        Store Address: 11501 S. 42nd St Bellevue NE 68123<br><small>(Tap to copy)</small>
+      </div>
+    </div>
+  
+    <div class="training-buttons">    
+      <a class="button" href="https://engage360training.com" target="_blank">Launch Training</a>
+    </div>
       
     <p class="instructions">
       <div class="training-buttons">    
-        <a class="button" href="../Goodyear.pdf" target="_blank">Instruction Guide</a>
+        <a class="button" href="../conti-guide.pdf" target="_blank">Instruction Guide</a>
       </div>
     </p>
 
@@ -139,7 +151,6 @@ $(function() {
     background: 'rgb(249, 117, 38)',
     fontSize: '12px',
     chatId: 1,
-    show: false
   });
 
   $('.open-zammad-chat').on('click', function(e) {
@@ -150,11 +161,44 @@ $(function() {
 </script>
 
 <script>
-function toggleMenu() {
-  const menu = document.getElementById("nav-menu");
-  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+  function toggleMenu() {
+    const menu = document.getElementById("nav-menu");
+    menu.classList.toggle("open");
+  }
+
+function closeMenu() {
+    const menu = document.getElementById("nav-menu");
+    menu.classList.remove("open");
+  }
+
+  document.addEventListener("click", function (event) {
+    const menu = document.getElementById("nav-menu");
+    const hamburger = document.getElementById("hamburger");
+
+    if (
+      menu.classList.contains("open") &&
+      !menu.contains(event.target) &&
+      !hamburger.contains(event.target)
+    ) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeMenu();
+    }
+  });
+    
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(function() {
+    alert('Copied: ' + text);
+  }, function(err) {
+    alert('Failed to copy: ' + err);
+  });
 }
 </script>
 
 </body>
 </html>
+

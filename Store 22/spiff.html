@@ -3,71 +3,35 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>BG Training | Store 17</title>
+    <title>Rewards & Spiffs | Store 22</title>
     <link rel="stylesheet" href="../shared-style.css">
-    <style>
-        .cred-box {
-            width: 90%;
-            max-width: 600px;
-            background: #000;
-            color: #fff;
-            padding: 10px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 14px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transition: background 0.3s ease;
-            cursor: pointer;
-            display: inline-block;
-        }
-        .cred-box:hover {
-            background: #222;
-        }
-        .cred-box small {
-            display: block;
-            margin-top: 5px;
-            font-size: 12px;
-            color: #ccc;
-        }
-
-        .instructions {
-            margin-top: 15px;
-        }
-    </style>
 </head>
 <body>
 
 <header>
-     <a href="../Store%2017/manager.html">
+    <a href="../Store%2022/manager.html">
       <img src="../logo.jpg" alt="Jensen Tire & Auto Logo">
     </a>
     <div id="hamburger" onclick="toggleMenu()">☰</div>
 </header>
-
+    
 <nav id="nav-menu">
   <a href="../index.html">Main Dashboard</a>
-  <a href="../Store%2017/manager.html">Manager Courses</a>
+  <a href="../Store%2022/manager.html">Manager Courses</a>
   <a href="#" onclick="openFeedbackPopup()">Submit Feedback</a>
   <a href="#" class="nav-link open-zammad-chat">Jensen Support chat</a>
-  <a href="https://jensentireandauto.com/" target="_blank">Retail Site</a>
+  <a href="https://jensentireandauto.com" target="_blank">Retail Site</a>
 </nav>
     
 <section id="role">
   <div class="container">
-    <h1>BG Training - Store 17</h1>
-    <p>Contact your Manager to gain access to the required training.</p>
-
+    <h1>Spiffs - Store 22</h1>
+    <p>Choose the reward sites below to create an account.</p>
+  
   <div class="training-buttons">    
-    <a class="button" href="https://go.team1bg.com" target="_blank">Launch BG Training</a>
+    <a class="button" href="https://www.Gyrewardsplus.com" target="_blank">Goodyear Rewards</a>
+    <a class="button" href="https://www.ContinentalRPM.com" target="_blank">Continental Rewards</a>
   </div>
-      
-    <p class="instructions">
-      <div class="training-buttons">    
-        <a class="button" href="../Goodyear.pdf" target="_blank">Instruction Guide</a>
-      </div>
-    </p>
 
     <footer style="margin-top: 40px;">
         Questions? Contact <a href="mailto:support@jensentireandauto.com">Jensen Support</a>
@@ -150,11 +114,44 @@ $(function() {
 </script>
 
 <script>
-function toggleMenu() {
-  const menu = document.getElementById("nav-menu");
-  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+  function toggleMenu() {
+    const menu = document.getElementById("nav-menu");
+    menu.classList.toggle("open");
+  }
+
+function closeMenu() {
+    const menu = document.getElementById("nav-menu");
+    menu.classList.remove("open");
+  }
+
+  document.addEventListener("click", function (event) {
+    const menu = document.getElementById("nav-menu");
+    const hamburger = document.getElementById("hamburger");
+
+    if (
+      menu.classList.contains("open") &&
+      !menu.contains(event.target) &&
+      !hamburger.contains(event.target)
+    ) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeMenu();
+    }
+  });
+    
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(function() {
+    alert('Copied: ' + text);
+  }, function(err) {
+    alert('Failed to copy: ' + err);
+  });
 }
 </script>
+
 
 </body>
 </html>
