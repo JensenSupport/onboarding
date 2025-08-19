@@ -1,23 +1,51 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <title>Select Role | Store 01</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Continental Training | Store 23</title>
     <link rel="stylesheet" href="../shared-style.css">
+    <style>
+        .cred-box {
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background 0.3s ease;
+            cursor: pointer;
+        }
+        .cred-box:hover {
+            background: #222;
+        }
+        .cred-box small {
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        .instructions {
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
 
 <header>
-  <a href="../index.html">
-      <img src="../logo.jpg" alt="Jensen Tire & Auto Logo">
+  <a href="../Store%2023/manager.html">
+    <img src="../logo.jpg" alt="Jensen Tire & Auto Logo">
   </a>
-    <div id="hamburger" onclick="toggleMenu()">☰</div>
+  <div id="hamburger" onclick="toggleMenu()">☰</div>
 </header>
 
 <nav id="nav-menu">
   <a href="../index.html">Main Dashboard</a>
+  <a href="../Store%2023/manager.html">Manager Courses</a>
   <a href="#" onclick="openFeedbackPopup()">Submit Feedback</a>
   <a href="#" class="nav-link open-zammad-chat">Jensen Support chat</a>
   <a href="https://jensentireandauto.com" target="_blank">Retail Site</a>
@@ -25,19 +53,38 @@
     
 <section id="role">
   <div class="container">
-    <h1>Select Your Role - Store 01</h1>
-    <p>Please choose your position to continue to the appropriate training.</p>
+    <h1>Continental Training - Store 23</h1>
+    <p>Follow the instructions below to create a Continental account and access required training.</p>
 
-  <div class="role-buttons">    
-    <a class="button" href="manager.html">Manager</a>
-    <a class="button" href="tech.html">Technician</a>
-  </div>
+    <div class="grid-container">
+      <div class="cred-box" onclick="copyToClipboard('Jensen Tire & Auto #23')">
+        Store Name: Jensen Tire & Auto #23<br><small>(Tap to copy)</small>
+      </div>
+      <div class="cred-box" onclick="copyToClipboard('8288757')">
+        Account Number: 8288757<br><small>(Tap to copy)</small>
+      </div>
+      <div class="cred-box" onclick="copyToClipboard('402-502-7400')">
+        Store Phone Number: <a href="tel:4025027400">402-502-7400</a><br><small>(Tap to copy)</small>
+      </div>
+      <div class="cred-box" onclick="copyToClipboard('1412 N 203rd St Elkhorn NE 68022')">
+        Store Address: 1412 N 203rd St Elkhorn NE 68022<br><small>(Tap to copy)</small>
+      </div>
+    </div>
+  
+    <div class="training-buttons">    
+      <a class="button" href="https://engage360training.com" target="_blank">Launch Training</a>
+    </div>
+      
+    <p class="instructions">
+      <div class="training-buttons">    
+        <a class="button" href="../conti-guide.pdf" target="_blank">Instruction Guide</a>
+      </div>
+    </p>
 
-    <footer>
+    <footer style="margin-top: 40px;">
         Questions? Contact <a href="mailto:support@jensentireandauto.com">Jensen Support</a>
     </footer>
-      
- </div>
+  </div>
 </section>
 
 <div id="feedbackPopup" class="feedback-popup">
@@ -104,7 +151,6 @@ $(function() {
     background: 'rgb(249, 117, 38)',
     fontSize: '12px',
     chatId: 1,
-    show: false
   });
 
   $('.open-zammad-chat').on('click', function(e) {
@@ -153,6 +199,6 @@ function copyToClipboard(text) {
 }
 </script>
 
-    
 </body>
 </html>
+

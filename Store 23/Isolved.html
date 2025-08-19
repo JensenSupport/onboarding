@@ -1,43 +1,78 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Select Role | Store 01</title>
+    <title>ISolved Resources | Store 23</title>
     <link rel="stylesheet" href="../shared-style.css">
+    <style>
+        .cred-box {
+            width: 90%;
+            max-width: 600px;
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .cred-box:hover {
+            background: #222;
+        }
+        .cred-box small {
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        .instructions {
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
 
 <header>
-  <a href="../index.html">
+     <a href="../Store%2023/manager.html">
       <img src="../logo.jpg" alt="Jensen Tire & Auto Logo">
-  </a>
+    </a>
     <div id="hamburger" onclick="toggleMenu()">☰</div>
 </header>
 
 <nav id="nav-menu">
   <a href="../index.html">Main Dashboard</a>
+  <a href="../Store%2023/manager.html">Manager Courses</a>
   <a href="#" onclick="openFeedbackPopup()">Submit Feedback</a>
   <a href="#" class="nav-link open-zammad-chat">Jensen Support chat</a>
-  <a href="https://jensentireandauto.com" target="_blank">Retail Site</a>
+  <a href="https://jensentireandauto.com/" target="_blank">Retail Site</a>
 </nav>
     
 <section id="role">
   <div class="container">
-    <h1>Select Your Role - Store 01</h1>
-    <p>Please choose your position to continue to the appropriate training.</p>
+    <h1>ISolved Resources - Store 23</h1>
+    <p>Follow the instructions below to access your ISolved time and attendance portal.</p>
 
-  <div class="role-buttons">    
-    <a class="button" href="manager.html">Manager</a>
-    <a class="button" href="tech.html">Technician</a>
+  <div class="training-buttons">    
+    <a class="button" href="https://identity.myisolved.com/Account/Login" target="_blank">Isolved portal</a>
   </div>
+      
+    <p class="instructions">
+      <div class="training-buttons">    
+        <a class="button" href="../Isolved.pdf" target="_blank">Instruction Guide</a>
+      </div>
+    </p>
 
-    <footer>
+    <footer style="margin-top: 40px;">
         Questions? Contact <a href="mailto:support@jensentireandauto.com">Jensen Support</a>
     </footer>
-      
- </div>
+  </div>
 </section>
 
 <div id="feedbackPopup" class="feedback-popup">
@@ -115,44 +150,11 @@ $(function() {
 </script>
 
 <script>
-  function toggleMenu() {
-    const menu = document.getElementById("nav-menu");
-    menu.classList.toggle("open");
-  }
-
-function closeMenu() {
-    const menu = document.getElementById("nav-menu");
-    menu.classList.remove("open");
-  }
-
-  document.addEventListener("click", function (event) {
-    const menu = document.getElementById("nav-menu");
-    const hamburger = document.getElementById("hamburger");
-
-    if (
-      menu.classList.contains("open") &&
-      !menu.contains(event.target) &&
-      !hamburger.contains(event.target)
-    ) {
-      closeMenu();
-    }
-  });
-
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      closeMenu();
-    }
-  });
-    
-function copyToClipboard(text) {
-  navigator.clipboard.writeText(text).then(function() {
-    alert('Copied: ' + text);
-  }, function(err) {
-    alert('Failed to copy: ' + err);
-  });
+function toggleMenu() {
+  const menu = document.getElementById("nav-menu");
+  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
 }
 </script>
 
-    
 </body>
 </html>
