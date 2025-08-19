@@ -56,7 +56,7 @@
     
 <section id="role">
   <div class="container">
-    <h1>Goodyear Training - Store 01</h1>
+    <h1>BG Training - Store 01</h1>
     <p>Contact your BG rep to get enrolled to access the required training.</p>
 
   <div class="training-buttons">    
@@ -139,7 +139,6 @@ $(function() {
     background: 'rgb(249, 117, 38)',
     fontSize: '12px',
     chatId: 1,
-    show: false
   });
 
   $('.open-zammad-chat').on('click', function(e) {
@@ -150,10 +149,35 @@ $(function() {
 </script>
 
 <script>
-function toggleMenu() {
-  const menu = document.getElementById("nav-menu");
-  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
-}
+  function toggleMenu() {
+    const menu = document.getElementById("nav-menu");
+    menu.classList.toggle("open");
+  }
+
+function closeMenu() {
+    const menu = document.getElementById("nav-menu");
+    menu.classList.remove("open");
+  }
+
+  document.addEventListener("click", function (event) {
+    const menu = document.getElementById("nav-menu");
+    const hamburger = document.getElementById("hamburger");
+
+    if (
+      menu.classList.contains("open") &&
+      !menu.contains(event.target) &&
+      !hamburger.contains(event.target)
+    ) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeMenu();
+    }
+  });
+
 </script>
 
 </body>
