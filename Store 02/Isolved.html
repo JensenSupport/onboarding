@@ -70,7 +70,7 @@
     </p>
 
       <div class="training-buttons">    
-        <a class="button" href="#" onclick="requestBtn()">Request Manager Instructions</a>
+        <a class="button" href="#" onclick="request()">Request Manager Instructions</a>
       </div>
 
     <footer style="margin-top: 40px;">
@@ -190,62 +190,39 @@ function copyToClipboard(text) {
   });
 }
 </script>
-
+    
 <script>
-  // 1) Paste your Power Automate HTTP POST URL here:
-  const FLOW_URL = 'https://default4e006550b51242c29ec2b301c0fa6a.51.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/b2ed9557d4644a7ab9f70211c4a3bf33/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QSoxbZBeYymcAn1YdINQpX5pMMJ6ophzTiSdIzIGmTE';
+function request() {
+  document.getElementById('').style.display = 'block';
+}
 
-  const dialogEl = document.getElementById('requestDialog');
-  const btnEl = document.getElementById('requestBtn');
-  const formEl = document.getElementById('requestForm');
-  const cancelEl = document.getElementById('cancelBtn');
-  const nameEl = document.getElementById('nameInput');
-  const statusEl = document.getElementById('status');
+function closeFeedbackPopup() {
+  document.getElementById('feedbackPopup').style.display = 'none';
+}
 
-  btnEl.addEventListener('click', () => {
-    dialogEl.showModal();
-    nameEl.focus();
+document.getElementById("feedback-form").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const feedback = document.getElementById("feedback").value;
+
+  const response = await fetch("https://default4e006550b51242c29ec2b301c0fa6a.51.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/b2ed9557d4644a7ab9f70211c4a3bf33/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QSoxbZBeYymcAn1YdINQpX5pMMJ6ophzTiSdIzIGmTE", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ feedback })
   });
 
-  cancelEl.addEventListener('click', () => dialogEl.close());
-
-  formEl.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const name = nameEl.value.trim();
-    if (!name) {
-      statusEl.textContent = 'Please enter your name.';
-      nameEl.focus();
-      return;
-    }
-
-    statusEl.textContent = 'Sending...';
-
-    try {
-      // Send as text/plain to avoid CORS preflight; body is still JSON and will be parsed in the flow.
-      const resp = await fetch(FLOW_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ name })
-      });
-
-      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-
-      // If CORS header is set in your flow's Response, we can read JSON and show a friendly message
-      let msg = 'Request sent.';
-      try {
-        const data = await resp.json();
-        if (data && data.ok) msg = `Thanks, ${data.received || name}. Your request was sent.`;
-      } catch (_) { /* ignore if server didn’t return JSON */ }
-
-      statusEl.textContent = msg;
-      formEl.reset();
-      setTimeout(() => dialogEl.close(), 1200);
-    } catch (err) {
-      console.error(err);
-      statusEl.textContent = 'Sorry, something went wrong. Please try again later.';
-    }
-  });
+  if (response.ok) {
+    document.getElementById("feedback").value = "";
+    document.getElementById("thank-you").style.display = "block";
+    setTimeout(() => {
+      document.getElementById("thank-you").style.display = "none";
+      closeFeedbackPopup();
+    }, 2000);
+  } else {
+    alert("Submission failed. Please try again.");
+  }
+});
 </script>
 
 </body>
