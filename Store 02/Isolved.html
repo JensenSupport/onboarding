@@ -69,6 +69,10 @@
       </div>
     </p>
 
+      <div class="training-buttons">    
+        <a class="button" href="#" onclick="requestBtn()">Request Manager Instructions</a>
+      </div>
+
     <footer style="margin-top: 40px;">
         Questions? Contact <a href="mailto:support@jensentireandauto.com">Jensen Support</a>
     </footer>
@@ -185,6 +189,63 @@ function copyToClipboard(text) {
     alert('Failed to copy: ' + err);
   });
 }
+</script>
+
+<script>
+  // 1) Paste your Power Automate HTTP POST URL here:
+  const FLOW_URL = 'https://<your-flow-endpoint>';
+
+  const dialogEl = document.getElementById('requestDialog');
+  const btnEl = document.getElementById('requestBtn');
+  const formEl = document.getElementById('requestForm');
+  const cancelEl = document.getElementById('cancelBtn');
+  const nameEl = document.getElementById('nameInput');
+  const statusEl = document.getElementById('status');
+
+  btnEl.addEventListener('click', () => {
+    dialogEl.showModal();
+    nameEl.focus();
+  });
+
+  cancelEl.addEventListener('click', () => dialogEl.close());
+
+  formEl.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = nameEl.value.trim();
+    if (!name) {
+      statusEl.textContent = 'Please enter your name.';
+      nameEl.focus();
+      return;
+    }
+
+    statusEl.textContent = 'Sending...';
+
+    try {
+      // Send as text/plain to avoid CORS preflight; body is still JSON and will be parsed in the flow.
+      const resp = await fetch(FLOW_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ name })
+      });
+
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+
+      // If CORS header is set in your flow's Response, we can read JSON and show a friendly message
+      let msg = 'Request sent.';
+      try {
+        const data = await resp.json();
+        if (data && data.ok) msg = `Thanks, ${data.received || name}. Your request was sent.`;
+      } catch (_) { /* ignore if server didn’t return JSON */ }
+
+      statusEl.textContent = msg;
+      formEl.reset();
+      setTimeout(() => dialogEl.close(), 1200);
+    } catch (err) {
+      console.error(err);
+      statusEl.textContent = 'Sorry, something went wrong. Please try again later.';
+    }
+  });
 </script>
 
 </body>
