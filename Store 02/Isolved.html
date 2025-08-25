@@ -97,6 +97,27 @@
   </div>
 </div>
 
+<div id="requestPopup" class="feedback-popup" style="display: none;">
+  <div class="feedback-content">
+    <h3 id="request-title">Request Manager Instructions</h3>
+    <form id="request-form">
+      <textarea
+        id="request"
+        name="request"
+        placeholder="Please type your name and Store #"
+        required
+      ></textarea>
+      <br />
+      <button type="submit" class="button">Submit</button>
+      <button type="button" class="button" onclick="closeRequest()">Cancel</button>
+    </form>
+    <p id="thank-you-request" style="display: none; color: black; margin-top: 20px;">
+      Thank you! Your request was sent.
+    </p>
+  </div>
+</div>
+
+
 <script>
 function openFeedbackPopup() {
   document.getElementById('feedbackPopup').style.display = 'block';
@@ -192,38 +213,48 @@ function copyToClipboard(text) {
 </script>
     
 <script>
-function openRequest() {
-  document.getElementById('request').style.display = 'block';
-}
-
-function closeRequest() {
-  document.getElementById('request').style.display = 'none';
-}
-
-document.getElementById("request-form").addEventListener("submit", async function (e) {
-  e.preventDefault();
-  const feedback = document.getElementById("request").value;
-
-  const response = await fetch("https://default4e006550b51242c29ec2b301c0fa6a.51.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/b2ed9557d4644a7ab9f70211c4a3bf33/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QSoxbZBeYymcAn1YdINQpX5pMMJ6ophzTiSdIzIGmTE", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ request })
-  });
-
-  if (response.ok) {
-    document.getElementById("request").value = "";
-    document.getElementById("thank-you").style.display = "block";
-    setTimeout(() => {
-      document.getElementById("thank-you").style.display = "none";
-      closeFeedbackPopup();
-    }, 2000);
-  } else {
-    alert("Submission failed. Please try again.");
+  function openRequest() {
+    document.getElementById('requestPopup').style.display = 'block';
   }
-});
+
+  function closeRequest() {
+    document.getElementById('requestPopup').style.display = 'none';
+  }
+
+  // Attach once the DOM for #request-form exists (your scripts are at the bottom, so this is fine)
+  document.getElementById("request-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const request = document.getElementById("request").value.trim();
+    if (!request) return;
+
+    try {
+      const response = await fetch("https://default4e006550b51242c29ec2b301c0fa6a.51.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/b2ed9557d4644a7ab9f70211c4a3bf33/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QSoxbZBeYymcAn1YdINQpX5pMMJ6ophzTiSdIzIGmTE", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        // IMPORTANT: send the value under the property name your Flow expects.
+        // If your Flow is expecting "request", keep it as is. If it expects "feedback",
+        // change the key to { feedback: request }.
+        body: JSON.stringify({ request })
+      });
+
+      if (response.ok) {
+        document.getElementById("request").value = "";
+        document.getElementById("thank-you-request").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("thank-you-request").style.display = "none";
+          closeRequest();
+        }, 2000);
+      } else {
+        alert("Submission failed. Please try again.");
+      }
+    } catch (err) {
+      alert("Network error. Please try again.");
+      console.error(err);
+    }
+  });
 </script>
+
 
 </body>
 </html>
