@@ -3,75 +3,35 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>ISolved Resources | Store 27</title>
+    <title>Todays Class | Store 27</title>
     <link rel="stylesheet" href="../shared-style.css">
-    <style>
-        .cred-box {
-            width: 90%;
-            max-width: 600px;
-            background: #000;
-            color: #fff;
-            padding: 10px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 14px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transition: background 0.3s ease;
-            cursor: pointer;
-            display: inline-block;
-        }
-        .cred-box:hover {
-            background: #222;
-        }
-        .cred-box small {
-            display: block;
-            margin-top: 5px;
-            font-size: 12px;
-            color: #ccc;
-        }
-
-        .instructions {
-            margin-top: 15px;
-        }
-    </style>
 </head>
 <body>
 
 <header>
-     <a href="../Store%2027/manager.html">
+    <a href="../Store%2027/manager.html">
       <img src="../logo.jpg" alt="Jensen Tire & Auto Logo">
     </a>
     <div id="hamburger" onclick="toggleMenu()">☰</div>
 </header>
-
+    
 <nav id="nav-menu">
   <a href="../index.html">Main Dashboard</a>
   <a href="../Store%2027/manager.html">Manager Courses</a>
   <a href="#" onclick="openFeedbackPopup()">Submit Feedback</a>
   <a href="#" class="nav-link open-zammad-chat">Jensen Support chat</a>
-  <a href="https://jensentireandauto.com/" target="_blank">Retail Site</a>
+  <a href="https://jensentireandauto.com" target="_blank">Retail Site</a>
 </nav>
     
 <section id="role">
   <div class="container">
-    <h1>ISolved Resources - Store 27</h1>
-    <p>Follow the instructions below to access your ISolved time and attendance portal.</p>
-
+    <h1>Todays Class - Store 27</h1>
+    <p>Please click the appropriate link below to download the app.</p>
+  
   <div class="training-buttons">    
-    <a class="button" href="https://identity.myisolved.com/Account/Login" target="_blank">Isolved portal</a>
+    <a class="button" href="https://play.google.com/store/apps/details?id=com.todaysclass.app" target="_blank">Google Play Store</a>
+    <a class="button" href="https://apps.apple.com/us/app/todays-class/id1458558480" target="_blank">Apple App Store</a>
   </div>
-      
-    <p class="instructions">
-      <div class="training-buttons">    
-        <a class="button" href="../Isolved.pdf" target="_blank">Instruction Guide</a>
-      </div>
-    </p>
-
-      <div class="training-buttons">    
-        <a class="button" onclick="openRequest()">Request Manager Instructions</a>
-      </div>
 
     <footer style="margin-top: 40px;">
         Questions? Contact <a href="mailto:support@jensentireandauto.com">Jensen Support</a>
@@ -96,27 +56,6 @@
     <p id="thank-you" style="display: none; color: black; margin-top: 20px;">Thank you for your feedback!</p>
   </div>
 </div>
-
-<div id="requestPopup" class="feedback-popup" style="display: none;">
-  <div class="feedback-content">
-    <h3 id="request-title">Request Manager Instructions</h3>
-    <form id="request-form">
-      <textarea
-        id="request"
-        name="request"
-        placeholder="Please type your name and Store #"
-        required
-      ></textarea>
-      <br />
-      <button type="submit" class="button">Submit</button>
-      <button type="button" class="button" onclick="closeRequest()">Cancel</button>
-    </form>
-    <p id="thank-you-request" style="display: none; color: black; margin-top: 20px;">
-      Thank you! Your request was sent.
-    </p>
-  </div>
-</div>
-
 
 <script>
 function openFeedbackPopup() {
@@ -164,6 +103,7 @@ $(function() {
     background: 'rgb(249, 117, 38)',
     fontSize: '12px',
     chatId: 1,
+    show: false
   });
 
   $('.open-zammad-chat').on('click', function(e) {
@@ -210,49 +150,6 @@ function copyToClipboard(text) {
     alert('Failed to copy: ' + err);
   });
 }
-</script>
-    
-<script>
-  function openRequest() {
-    document.getElementById('requestPopup').style.display = 'block';
-  }
-
-  function closeRequest() {
-    document.getElementById('requestPopup').style.display = 'none';
-  }
-
-  // Attach once the DOM for #request-form exists (your scripts are at the bottom, so this is fine)
-  document.getElementById("request-form").addEventListener("submit", async function (e) {
-    e.preventDefault();
-
-    const request = document.getElementById("request").value.trim();
-    if (!request) return;
-
-    try {
-      const response = await fetch("https://default4e006550b51242c29ec2b301c0fa6a.51.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/b2ed9557d4644a7ab9f70211c4a3bf33/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QSoxbZBeYymcAn1YdINQpX5pMMJ6ophzTiSdIzIGmTE", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        // IMPORTANT: send the value under the property name your Flow expects.
-        // If your Flow is expecting "request", keep it as is. If it expects "feedback",
-        // change the key to { feedback: request }.
-        body: JSON.stringify({ request })
-      });
-
-      if (response.ok) {
-        document.getElementById("request").value = "";
-        document.getElementById("thank-you-request").style.display = "block";
-        setTimeout(() => {
-          document.getElementById("thank-you-request").style.display = "none";
-          closeRequest();
-        }, 2000);
-      } else {
-        alert("Submission failed. Please try again.");
-      }
-    } catch (err) {
-      alert("Network error. Please try again.");
-      console.error(err);
-    }
-  });
 </script>
 
 
