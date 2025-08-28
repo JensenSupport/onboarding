@@ -26,7 +26,21 @@
 <section id="role">
   <div class="container">
     <h1>Todays Class - Store 24</h1>
-    <p>Please click the appropriate link below to download the app.</p>
+    <p>Use your assigned credentials below to log in.</p>
+
+  <div id="credsWrapper" class="grid-container">
+    <div id="todaysClassUserBox" class="cred-box" onclick="copyToClipboard(this.dataset.copy)">
+      Username: <span id="todaysClassUserText">Loading…</span>
+       <small>(Tap to copy)</small>
+    </div>
+  <div id="todaysClassPassBox" class="cred-box" onclick="copyToClipboard(this.dataset.copy)">
+      Password: <span id="todaysClassPassText">Loading…</span>
+       <small>(Tap to copy)</small>
+    </div>
+  </div>
+  <div id="noCreds" class="muted" style="display:none; margin-top:10px;">
+    No Today's Class credentials found for your account. Please contact IT.
+  </div>
   
   <div class="training-buttons">    
     <a class="button" href="https://play.google.com/store/apps/details?id=com.todaysclass.app" target="_blank">Google Play Store</a>
