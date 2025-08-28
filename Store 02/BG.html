@@ -139,7 +139,6 @@
       const profSnap = await getDoc(profRef);
       if (!profSnap.exists()) throw new Error("Profile missing");
       const creds = profSnap.data().vendorCreds?.bg;
-      console.log(creds.username, creds.password);
 
       const userBox = document.getElementById("bgUserBox");
       const passBox = document.getElementById("bgPassBox");
