@@ -137,8 +137,8 @@
     try {
       const emailId = (user.email || "").toLowerCase();
       const dirSnap = await getDoc(doc(db, "directory", emailId));
-      if (!profSnap.exists()) throw new Error("Profile missing");
-      const creds = profSnap.data().vendorCreds?.bg;
+      if (!dirSnap.exists()) throw new Error("Profile missing");
+      const creds = dirSnap.data().vendorCreds?.bg;
 
       const userBox = document.getElementById("bgUserBox");
       const passBox = document.getElementById("bgPassBox");
