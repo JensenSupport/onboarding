@@ -138,7 +138,7 @@
       const profRef = doc(db, "profiles", user.uid);
       const profSnap = await getDoc(profRef);
       if (!profSnap.exists()) throw new Error("Profile missing");
-      const creds = profSnap.data().vendorCreds?.[VENDOR_KEY];
+      const creds = profSnap.data().vendorCreds?.[bg];
 
       const userBox = document.getElementById("bgUserBox");
       const passBox = document.getElementById("bgPassBox");
