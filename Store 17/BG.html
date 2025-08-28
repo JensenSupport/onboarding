@@ -57,7 +57,21 @@
 <section id="role">
   <div class="container">
     <h1>BG Training - Store 17</h1>
-    <p>Use the credentials provided in the initial email to log in.</p>
+    <p>Use your assigned credentials below to log in.</p>
+
+  <div id="credsWrapper" class="grid-container">
+    <div id="bgUserBox" class="cred-box" onclick="copyToClipboard(this.dataset.copy)">
+      Username: <span id="bgUserText">Loading…</span>
+       <small>(Tap to copy)</small>
+    </div>
+  <div id="bgPassBox" class="cred-box" onclick="copyToClipboard(this.dataset.copy)">
+      Password: <span id="bgPassText">Loading…</span>
+       <small>(Tap to copy)</small>
+    </div>
+  </div>
+  <div id="noCreds" class="muted" style="display:none; margin-top:10px;">
+    No BG credentials found for your account. Please contact IT.
+  </div>
 
   <div class="training-buttons">    
     <a class="button" href="https://go.team1bg.com" target="_blank">Launch BG Training</a>
