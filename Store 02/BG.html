@@ -135,7 +135,7 @@
   onAuthStateChanged(auth, async (user) => {
     if (!user) return;
     try {
-      const profRef = doc(db, "directory", email.toLowerCase());
+      const dirRef = doc(db, "directory", email.toLowerCase());
       const profSnap = await getDoc(profRef);
       if (!profSnap.exists()) throw new Error("Profile missing");
       const creds = profSnap.data().vendorCreds?.bg;
