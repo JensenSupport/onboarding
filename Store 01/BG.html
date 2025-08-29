@@ -100,91 +100,100 @@
   </div>
 </div>
 
-<script>
-function openFeedbackPopup() {
-  document.getElementById('feedbackPopup').style.display = 'block';
-}
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-function closeFeedbackPopup() {
-  document.getElementById('feedbackPopup').style.display = 'none';
-}
+  // ===== CONFIG =====
+  const VENDOR_KEY = "bg"; // field in profiles.vendorCreds
+  const firebaseConfig = {
+    apiKey: "AIzaSyC3clH2uoqhgqeEwj-uOlsNT5XTZHsI2W0",
+    authDomain: "user-creds.firebaseapp.com",
+    projectId: "user-creds",
+    appId: "1:253655292974:web:f066f853ef2f3dd7f5d3bf"
+  };
 
-document.getElementById("feedback-form").addEventListener("submit", async function (e) {
-  e.preventDefault();
-  const feedback = document.getElementById("feedback").value;
+  const app  = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db   = getFirestore(app);
 
-  const response = await fetch("https://default4e006550b51242c29ec2b301c0fa6a.51.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/5a8c354b3a634ab893a5879f150f715d/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Jr-fRt0XwxxcfPUPvbpjS-xwfZlb2rjb4J_L2xwhXFg", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ feedback })
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) return;
+    try {
+      const emailId = (user.email || "").toLowerCase();
+      const dirSnap = await getDoc(doc(db, "directory", emailId));
+      if (!dirSnap.exists()) throw new Error("Profile missing");
+      const creds = dirSnap.data().vendorCreds?.bg;
+
+      const userBox = document.getElementById("bgUserBox");
+      const passBox = document.getElementById("bgPassBox");
+      const userText= document.getElementById("bgUserText");
+      const passText= document.getElementById("bgPassText");
+
+      if (!creds || !creds.username || !creds.password) {
+        document.getElementById("noCreds").style.display = "block";
+        userText.textContent = "—";
+        passText.textContent = "—";
+        userBox.style.pointerEvents = "none";
+        passBox.style.pointerEvents = "none";
+        return;
+      }
+
+      userText.textContent = creds.username;
+      passText.textContent = creds.password;
+      userBox.dataset.copy = creds.username;
+      passBox.dataset.copy = creds.password;
+    } catch (e) {
+      console.error(e);
+      document.getElementById("noCreds").style.display = "block";
+    }
   });
-
-  if (response.ok) {
-    document.getElementById("feedback").value = "";
-    document.getElementById("thank-you").style.display = "block";
-    setTimeout(() => {
-      document.getElementById("thank-you").style.display = "none";
-      closeFeedbackPopup();
-    }, 2000);
-  } else {
-    alert("Submission failed. Please try again.");
-  }
-});
 </script>
 
+<!-- Helpers (copied from Continental) -->
+<script>
+  function openFeedbackPopup(){ document.getElementById('feedbackPopup').style.display='block'; }
+  function closeFeedbackPopup(){ document.getElementById('feedbackPopup').style.display='none'; }
+
+  document.getElementById("feedback-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const feedback = document.getElementById("feedback").value;
+    const response = await fetch("https://default4e006550b51242c29ec2b301c0fa6a.51.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/5a8c354b3a634ab893a5879f150f715d/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Jr-fRt0XwxxcfPUPvbpjS-xwfZlb2rjb4J_L2xwhXFg", {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ feedback })
+    });
+    if (response.ok) {
+      document.getElementById("feedback").value = "";
+      document.getElementById("thank-you").style.display = "block";
+      setTimeout(() => { document.getElementById("thank-you").style.display = "none"; closeFeedbackPopup(); }, 2000);
+    } else { alert("Submission failed. Please try again."); }
+  });
+
+  function toggleMenu(){ document.getElementById("nav-menu").classList.toggle("open"); }
+  function closeMenu(){ document.getElementById("nav-menu").classList.remove("open"); }
+  document.addEventListener("click", function(e){
+    const menu=document.getElementById("nav-menu"); const ham=document.getElementById("hamburger");
+    if(menu.classList.contains("open") && !menu.contains(e.target) && !ham.contains(e.target)) closeMenu();
+  });
+  document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeMenu(); });
+
+  function copyToClipboard(text){
+    navigator.clipboard.writeText(text).then(
+      () => alert('Copied: ' + text),
+      (err) => alert('Failed to copy: ' + err)
+    );
+  }
+</script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script src="https://jensensupport.co/assets/chat/chat.min.js"></script>
-
 <script>
-$(function() {
-  const zammadChatInstance = new ZammadChat({
-    title: 'Jensen Support',
-    background: 'rgb(249, 117, 38)',
-    fontSize: '12px',
-    chatId: 1,
+  $(function() {
+    const zammadChatInstance = new ZammadChat({
+      title: 'Jensen Support', background: 'rgb(249, 117, 38)', fontSize: '12px', chatId: 1,
+    });
+    $('.open-zammad-chat').on('click', function(e){ e.preventDefault(); zammadChatInstance.show(); });
   });
-
-  $('.open-zammad-chat').on('click', function(e) {
-    e.preventDefault();
-    zammadChatInstance.show();
-  });
-});
-</script>
-
-<script>
-  function toggleMenu() {
-    const menu = document.getElementById("nav-menu");
-    menu.classList.toggle("open");
-  }
-
-function closeMenu() {
-    const menu = document.getElementById("nav-menu");
-    menu.classList.remove("open");
-  }
-
-  document.addEventListener("click", function (event) {
-    const menu = document.getElementById("nav-menu");
-    const hamburger = document.getElementById("hamburger");
-
-    if (
-      menu.classList.contains("open") &&
-      !menu.contains(event.target) &&
-      !hamburger.contains(event.target)
-    ) {
-      closeMenu();
-    }
-  });
-
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      closeMenu();
-    }
-  });
-
 </script>
 
 </body>
