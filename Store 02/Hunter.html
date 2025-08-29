@@ -133,10 +133,10 @@
       if (!dirSnap.exists()) throw new Error("Profile missing");
       const creds = dirSnap.data().vendorCreds?.hunter;
 
-      const userBox = document.getElementById("bgUserBox");
-      const passBox = document.getElementById("bgPassBox");
-      const userText= document.getElementById("bgUserText");
-      const passText= document.getElementById("bgPassText");
+      const userBox = document.getElementById("hunterUserBox");
+      const passBox = document.getElementById("hunterPassBox");
+      const userText= document.getElementById("hunterUserText");
+      const passText= document.getElementById("hunterPassText");
 
       if (!creds || !creds.username || !creds.password) {
         document.getElementById("noCreds").style.display = "block";
