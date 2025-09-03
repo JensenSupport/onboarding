@@ -98,10 +98,10 @@
       if (!dirSnap.exists()) throw new Error("Profile missing");
       const creds = dirSnap.data().vendorCreds?.todaysClass;
 
-      const userBox = document.getElementById("bgUserBox");
-      const passBox = document.getElementById("bgPassBox");
-      const userText= document.getElementById("bgUserText");
-      const passText= document.getElementById("bgPassText");
+      const userBox = document.getElementById("todaysClassUserBox");
+      const passBox = document.getElementById("todaysClassPassBox");
+      const userText= document.getElementById("todaysClassUserText");
+      const passText= document.getElementById("todaysClassPassText");
 
       if (!creds || !creds.username || !creds.password) {
         document.getElementById("noCreds").style.display = "block";
