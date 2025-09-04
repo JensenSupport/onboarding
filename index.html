@@ -198,66 +198,82 @@ document.getElementById("feedback-form").addEventListener("submit", async functi
   };
 
   // AUTH STATE CHANGE: check if it's first-time sign-in and send webhook
-  onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      // signed out → show login
-      loginCard.classList.remove("hidden");
-      signedInBox.classList.add("hidden");
-      statusEl.classList.add("hidden");
-      return;
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    loginCard.classList.remove("hidden");
+    signedInBox.classList.add("hidden");
+    statusEl.classList.add("hidden");
+    return;
+  }
+
+  try {
+    const email = (user.email || "").toLowerCase();
+    const assign = await getAssignment(email);  // already fetches from directory/{email}
+    const shortUsername = email.split("@")[0];
+
+    // Pull name from directory/{email}
+    const directoryRef = doc(db, "directory", email);
+    const directorySnap = await getDoc(directoryRef);
+
+    let firstName = "Unknown";
+    let lastName = "Unknown";
+    if (directorySnap.exists()) {
+      const data = directorySnap.data();
+      firstName = data.firstName || "Unknown";
+      lastName = data.lastName || "Unknown";
     }
 
-    try {
-      const email = (user.email || "").toLowerCase();
-      const assign = await getAssignment(email);
+    // Show signed-in panel
+    $("who").textContent = shortUsername;
+    loginCard.classList.add("hidden");
+    signedInBox.classList.remove("hidden");
 
-      // Show signed-in panel
-      $("who").textContent = email.includes("@") ? email.split("@")[0] : email;
-      loginCard.classList.add("hidden");
-      signedInBox.classList.remove("hidden");
-
-      $("continueBtn").onclick = () => {
-        window.location.href = destFor(assign);
-      };
-      $("signOutBtn").onclick = async () => {
-        await signOut(auth);
-        window.location.href = window.location.pathname;
-      };
-
-      // ===== ✅ FIRST-TIME SIGN-IN CHECK + NOTIFY POWER AUTOMATE =====
-      const profRef = doc(db, "profiles", user.uid);
-      const profSnap = await getDoc(profRef);
-      if (!profSnap.exists()) {
-        // Save new profile to Firestore
-        await setDoc(profRef, {
-          fakeEmail: email,
-          createdAt: new Date().toISOString()
-        }, { merge: true });
-
-        // 🔔 Send webhook to Power Automate
-        try {
-          await fetch("https://default4e006550b51242c29ec2b301c0fa6a.51.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/5cdaeb9e86d9407e8911f32e7da0695b/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fxIJJVsFLdUqfUpZ2yrjml4MVvVIbsCz4jCnrogon7U", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              username: email.split("@")[0],
-              email: email,
-              signedInAt: new Date().toISOString()
-            })
-          });
-        } catch (err) {
-          console.warn("Power Automate webhook failed:", err);
-        }
-      }
-    } catch (e) {
+    $("continueBtn").onclick = () => {
+      window.location.href = destFor(assign);
+    };
+    $("signOutBtn").onclick = async () => {
       await signOut(auth);
-      loginCard.classList.remove("hidden");
-      signedInBox.classList.add("hidden");
-      showStatus({ error: e.message });
+      window.location.href = window.location.pathname;
+    };
+
+    // Check if this is first-time sign-in
+    const profRef = doc(db, "profiles", user.uid);
+    const profSnap = await getDoc(profRef);
+
+    if (!profSnap.exists()) {
+      await setDoc(profRef, {
+        fakeEmail: email,
+        createdAt: new Date().toISOString(),
+        firstName,
+        lastName
+      }, { merge: true });
+
+      // ✅ Send webhook to Power Automate
+      try {
+        await fetch("https://your-power-automate-url-here", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            username: shortUsername,
+            email: email,
+            signedInAt: new Date().toISOString(),
+            firstName: firstName,
+            lastName: lastName
+          })
+        });
+      } catch (err) {
+        console.warn("Power Automate webhook failed:", err);
+      }
     }
-  });
+  } catch (e) {
+    await signOut(auth);
+    loginCard.classList.remove("hidden");
+    signedInBox.classList.add("hidden");
+    showStatus({ error: e.message });
+  }
+});
 </script>
 
 
