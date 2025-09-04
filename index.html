@@ -250,7 +250,7 @@ onAuthStateChanged(auth, async (user) => {
 
       // ✅ Send webhook to Power Automate
       try {
-        await fetch("https://your-power-automate-url-here", {
+        await fetch("https://default4e006550b51242c29ec2b301c0fa6a.51.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/5cdaeb9e86d9407e8911f32e7da0695b/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fxIJJVsFLdUqfUpZ2yrjml4MVvVIbsCz4jCnrogon7U", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
