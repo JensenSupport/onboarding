@@ -136,7 +136,6 @@ document.getElementById("feedback-form").addEventListener("submit", async functi
 
 </script>
 
-<!-- Firebase (modular CDN) -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import {
@@ -192,13 +191,13 @@ document.getElementById("feedback-form").addEventListener("submit", async functi
     try {
       const email = `${uname}@${FAKE_DOMAIN}`;
       await signInWithEmailAndPassword(auth, email, pw);
-      // after sign-in, onAuthStateChanged will run
+      // onAuthStateChanged will run after sign-in
     } catch (e) {
       showStatus({ error: e.message });
     }
   };
 
-  // AUTH STATE: show either login form OR "continue / sign out"
+  // AUTH STATE CHANGE: check if it's first-time sign-in and send webhook
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
       // signed out → show login
@@ -212,7 +211,7 @@ document.getElementById("feedback-form").addEventListener("submit", async functi
       const email = (user.email || "").toLowerCase();
       const assign = await getAssignment(email);
 
-      // Show the signed-in panel; no auto-redirect
+      // Show signed-in panel
       $("who").textContent = email.includes("@") ? email.split("@")[0] : email;
       loginCard.classList.add("hidden");
       signedInBox.classList.remove("hidden");
@@ -222,21 +221,37 @@ document.getElementById("feedback-form").addEventListener("submit", async functi
       };
       $("signOutBtn").onclick = async () => {
         await signOut(auth);
-        // Return to this page signed out
         window.location.href = window.location.pathname;
       };
 
-      // Ensure a per-user profile (optional)
+      // ===== ✅ FIRST-TIME SIGN-IN CHECK + NOTIFY POWER AUTOMATE =====
       const profRef = doc(db, "profiles", user.uid);
       const profSnap = await getDoc(profRef);
       if (!profSnap.exists()) {
+        // Save new profile to Firestore
         await setDoc(profRef, {
           fakeEmail: email,
           createdAt: new Date().toISOString()
         }, { merge: true });
+
+        // 🔔 Send webhook to Power Automate
+        try {
+          await fetch("https://your-power-automate-url-here", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              username: email.split("@")[0],
+              email: email,
+              signedInAt: new Date().toISOString()
+            })
+          });
+        } catch (err) {
+          console.warn("Power Automate webhook failed:", err);
+        }
       }
     } catch (e) {
-      // If user is signed in but has no directory entry, sign out and show message
       await signOut(auth);
       loginCard.classList.remove("hidden");
       signedInBox.classList.add("hidden");
@@ -244,6 +259,7 @@ document.getElementById("feedback-form").addEventListener("submit", async functi
     }
   });
 </script>
+
 
 <script>
   function toggleMenu() {
