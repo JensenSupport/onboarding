@@ -57,21 +57,14 @@
 <section id="role">
   <div class="container">
     <h1>BG Training - Store 11</h1>
-    <p>Use your assigned credentials below to log in.</p>
-
-  <div id="credsWrapper" class="grid-container">
-    <div id="bgUserBox" class="cred-box" onclick="copyToClipboard(this.dataset.copy)">
-      Username: <span id="bgUserText">Loading…</span>
-       <small>(Tap to copy)</small>
-    </div>
-  <div id="bgPassBox" class="cred-box" onclick="copyToClipboard(this.dataset.copy)">
-      Password: <span id="bgPassText">Loading…</span>
-       <small>(Tap to copy)</small>
-    </div>
-  </div>
-  <div id="noCreds" class="muted" style="display:none; margin-top:10px;">
-    No BG credentials found for your account. Please contact IT.
-  </div>
+    <p>Register using the additional email from "Noreply@BGprod.com".
+    <br>
+    <br>
+    You have 24Hrs from when you receive the link to register.<br>
+    If missed, please request an invite using the button below.
+    <br>
+    <br>
+    </p>
 
   <div class="training-buttons">    
     <a class="button" href="https://go.team1bg.com" target="_blank">Launch BG Training</a>
@@ -89,6 +82,9 @@
       </div>
     </p>
 
+    <div class="training-buttons">    
+        <a class="button" onclick="openRequest()">Request BG Invite</a>
+    </div>
 
     <footer style="margin-top: 40px;">
         Questions? Contact <a href="mailto:support@jensentireandauto.com">Jensen Support</a>
@@ -111,6 +107,26 @@
       <button type="button" class="button" onclick="closeFeedbackPopup()">Cancel</button>
     </form>
     <p id="thank-you" style="display: none; color: black; margin-top: 20px;">Thank you for your feedback!</p>
+  </div>
+</div>
+
+<div id="requestPopup" class="feedback-popup" style="display: none;">
+  <div class="feedback-content">
+    <h3 id="request-title">Request BG Invite</h3>
+    <form id="request-form">
+      <textarea
+        id="request"
+        name="request"
+        placeholder="Please type your name and Email"
+        required
+      ></textarea>
+      <br />
+      <button type="submit" class="button">Submit</button>
+      <button type="button" class="button" onclick="closeRequest()">Cancel</button>
+    </form>
+    <p id="thank-you-request" style="display: none; color: black; margin-top: 20px;">
+      Thank you! Your request was sent. Please allow up to 24hrs for response.
+    </p>
   </div>
 </div>
 
@@ -207,6 +223,49 @@
       title: 'Jensen Support', background: 'rgb(249, 117, 38)', fontSize: '12px', chatId: 1,
     });
     $('.open-zammad-chat').on('click', function(e){ e.preventDefault(); zammadChatInstance.show(); });
+  });
+</script>
+
+<script>
+  function openRequest() {
+    document.getElementById('requestPopup').style.display = 'block';
+  }
+
+  function closeRequest() {
+    document.getElementById('requestPopup').style.display = 'none';
+  }
+
+  // Attach once the DOM for #request-form exists (your scripts are at the bottom, so this is fine)
+  document.getElementById("request-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const request = document.getElementById("request").value.trim();
+    if (!request) return;
+
+    try {
+      const response = await fetch("https://default4e006550b51242c29ec2b301c0fa6a.51.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/f347dc9d785147bc8f7d93b4b6b85703/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=RLNxDI6ddPzHBX2LKJaahp-v3cvvoBr5MMPx6WQ_izs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        // IMPORTANT: send the value under the property name your Flow expects.
+        // If your Flow is expecting "request", keep it as is. If it expects "feedback",
+        // change the key to { feedback: request }.
+        body: JSON.stringify({ request })
+      });
+
+      if (response.ok) {
+        document.getElementById("request").value = "";
+        document.getElementById("thank-you-request").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("thank-you-request").style.display = "none";
+          closeRequest();
+        }, 3200);
+      } else {
+        alert("Submission failed. Please try again.");
+      }
+    } catch (err) {
+      alert("Network error. Please try again.");
+      console.error(err);
+    }
   });
 </script>
 
